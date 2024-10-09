@@ -2,8 +2,8 @@
  *  @author YOUR NAME HERE
  */
 public class Collatz {
-
-    /** Buggy implementation of nextNumber! */
+    
+    /** let me say something */
     public static int nextNumber(int n) {
         if (n  == 128) {
             return 1;
