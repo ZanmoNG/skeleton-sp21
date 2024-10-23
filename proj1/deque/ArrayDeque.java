@@ -59,9 +59,7 @@ public class ArrayDeque<T> {
             items[headIndex] = null;
             headIndex++;
             size--;
-            if (size < items.length / 4){
-                resize(items.length / 2);
-            }
+            // resize
             return theItem;
         }
     }
@@ -74,9 +72,7 @@ public class ArrayDeque<T> {
             T theItem = items[headIndex + size - 1];
             items[headIndex + size - 1] = null;
             size--;
-            if (size < items.length / 4){
-                resize(items.length / 2);
-            }
+            // resize
             return theItem;
         }
     }
