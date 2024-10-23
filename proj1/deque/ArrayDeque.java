@@ -16,6 +16,7 @@ public class ArrayDeque<T> {
         int newHeadSize = theSize / 3;
         System.arraycopy(items, headIndex, arr, newHeadSize, size);
         items = arr;
+        headIndex = newHeadSize;
     }
 
     public void addFirst(T item){
@@ -59,7 +60,9 @@ public class ArrayDeque<T> {
             items[headIndex] = null;
             headIndex++;
             size--;
-            // resize
+            if (size >= 400 && size < items.length / 4){
+                resize(items.length / 2);
+            }
             return theItem;
         }
     }
@@ -72,7 +75,9 @@ public class ArrayDeque<T> {
             T theItem = items[headIndex + size - 1];
             items[headIndex + size - 1] = null;
             size--;
-            // resize
+            if (size >= 400 && size < items.length / 4){
+                resize(items.length / 2);
+            }
             return theItem;
         }
     }
