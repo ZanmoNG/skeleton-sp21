@@ -1,5 +1,6 @@
 package deque;
 
+import edu.princeton.cs.algs4.StdRandom;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -128,7 +129,67 @@ public class LinkedListDequeTest {
         for (double i = 999999; i > 500000; i--) {
             assertEquals("Should have the same value", i, (double) lld1.removeLast(), 0.0);
         }
+    }
 
+    @Test
+    /** a random Test of ArrayDeque by comparison to LinkedListDeque*/
+    public void randomComparisonTest(){
+        int NUM = 50000;
+        ArrayDeque<Integer> ad = new ArrayDeque<>();
+        LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 
+        for (int i = 0; i < NUM; i++) {
+            int operatorNumber = StdRandom.uniform(0,5);
+            if (operatorNumber == 0) {
+                int randval = StdRandom.uniform(0, 100);
+                ad.addFirst(randval); //random value
+                lld.addFirst(randval);
+            } else if (operatorNumber == 1) {
+                int randval = StdRandom.uniform(0, 100);
+                ad.addLast(randval); //random value
+                lld.addLast(randval);
+            } else if (operatorNumber == 2) {
+                int ad_size = ad.size();
+                int lld_size = lld.size();
+                assertEquals(ad_size, lld_size);
+            } else if (! lld.isEmpty() && operatorNumber == 3) {
+                int ad_item = ad.removeFirst();
+                int lld_item = lld.removeFirst();
+                assertEquals(ad_item, lld_item);
+            } else if (! lld.isEmpty() && operatorNumber == 4) {
+                int ad_item = ad.removeLast();
+                int lld_item = lld.removeLast();
+                assertEquals(ad_item, lld_item);
+            } else if (! lld.isEmpty() && operatorNumber == 5) {
+                int randval = StdRandom.uniform(0, lld.size());
+                int ad_item = ad.get(randval);
+                int lld_item = lld.get(randval);
+                assertEquals(ad_item, lld_item);
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

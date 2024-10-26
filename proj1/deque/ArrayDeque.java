@@ -8,20 +8,20 @@ public class ArrayDeque<T> {
     public ArrayDeque(){
         items = (T[]) new Object[100];
         size = 0;
-        headIndex = 33;
+        headIndex = 0;
     }
 
     private void resize(int theSize){
         T[] arr = (T[]) new Object[theSize];
-        int newHeadSize = theSize / 3;
-        System.arraycopy(items, headIndex, arr, newHeadSize, size);
+        int newHeadIndex = theSize / 3;
+        System.arraycopy(items, headIndex, arr, newHeadIndex, size);
         items = arr;
-        headIndex = newHeadSize;
+        headIndex = newHeadIndex;
     }
 
     public void addFirst(T item){
-        if (headIndex - 1 < 0){
-            resize(size * 2);
+        if (headIndex - 1 <= 0){
+            resize(items.length * 2);
         }
         items[headIndex-1] = item;
         size++;
@@ -29,8 +29,8 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T item){
-        if (headIndex + size >= 100){
-            resize(size * 2);
+        if (headIndex + size >= items.length){
+            resize(items.length* 2);
         }
         items[headIndex+size] = item;
         size++;
