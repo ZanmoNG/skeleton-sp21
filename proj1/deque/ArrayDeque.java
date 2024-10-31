@@ -110,7 +110,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         }
     }
 
-    @Override
     public Iterator<T> iterator() {
         return new ADIterator();
     }
