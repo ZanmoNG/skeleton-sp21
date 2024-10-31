@@ -1,10 +1,8 @@
 package deque;
 
-import afu.org.checkerframework.checker.oigj.qual.O;
-
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
+public class ArrayDeque<T> implements Deque<T>{
     T[] items;
     int headIndex;
     int size;
@@ -13,10 +11,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         items = (T[]) new Object[100];
         size = 0;
         headIndex = 0;
-    }
-
-    public int getHeadIndex(){
-        return headIndex;
     }
 
     private void resize(int theSize){
@@ -114,7 +108,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return new ADIterator();
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
