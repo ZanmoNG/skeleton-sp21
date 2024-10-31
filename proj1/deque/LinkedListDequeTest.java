@@ -139,7 +139,7 @@ public class LinkedListDequeTest {
     @Test
     /** a random Test of ArrayDeque by comparison to LinkedListDeque*/
     public void randomComparisonTest(){
-        int testNum = 500000;
+        int testNum = 50000000;
         ArrayDeque<Integer> ad = new ArrayDeque<>();
         LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 
@@ -168,7 +168,7 @@ public class LinkedListDequeTest {
             } else if (! lld.isEmpty() && operatorNumber == 5) {
                 int randval = StdRandom.uniform(0, lld.size());
                 int ad_item = ad.get(randval);
-                int lld_item = lld.get(randval);
+                int lld_item = lld.getRecursive(randval);
                 assertEquals(ad_item, lld_item);
             }
         }

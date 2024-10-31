@@ -21,7 +21,7 @@ public class TestMaxAD {
             }
         }
 
-        public static Comparator<Dog> GetNameComparator() {
+        public static Comparator<Dog> getNameComparator() {
             return new NameComparator();
         }
 
@@ -31,7 +31,7 @@ public class TestMaxAD {
             }
         }
 
-        public static Comparator<Dog> GetWeightComparator() {
+        public static Comparator<Dog> getWeightComparator() {
             return new WeightComparator();
         }
 
@@ -41,9 +41,9 @@ public class TestMaxAD {
     }
 
     @Test
-    public void NameComparatorTest() {
+    public void nameComparatorTest() {
         MaxArrayDeque<Dog> madd =
-                new MaxArrayDeque<>(Dog.GetNameComparator());
+                new MaxArrayDeque<>(Dog.getNameComparator());
 
         Dog expect = new Dog("Huicr", 14);
         Dog except2 = new Dog("Ellin", 23);
@@ -64,9 +64,9 @@ public class TestMaxAD {
     }
 
     @Test
-    public void WeightComparatorTest() {
+    public void weightComparatorTest() {
         MaxArrayDeque<Dog> madd =
-                new MaxArrayDeque<>(Dog.GetWeightComparator());
+                new MaxArrayDeque<>(Dog.getWeightComparator());
 
         Dog except = new Dog("Huicr", 14);
         Dog except2 = new Dog("Ellin", 23);
@@ -78,7 +78,7 @@ public class TestMaxAD {
         madd.addFirst(except);
         madd.addFirst(new Dog("Duufu", 9));
 
-        Dog result2 = madd.max(Dog.GetWeightComparator());
+        Dog result2 = madd.max(Dog.getWeightComparator());
         assertEquals(result2, except2);
     }
 

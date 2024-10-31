@@ -1,4 +1,5 @@
 package gh2;
+
 import edu.princeton.cs.algs4.StdAudio;
 import edu.princeton.cs.algs4.StdDraw;
 
@@ -6,7 +7,7 @@ import edu.princeton.cs.algs4.StdDraw;
  * A client that uses the synthesizer package to replicate a plucked guitar string sound
  */
 public class GuitarHero {
-    public static String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
+    private static String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
     public static void main(String[] args) {
         GuitarString[] strings = new GuitarString[37];
@@ -21,7 +22,7 @@ public class GuitarHero {
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
                 String a = String.valueOf(key);
-                if (keyboard.contains(a)){
+                if (keyboard.contains(a)) {
                     int index = keyboard.indexOf(key);
                     strings[index].pluck();
                 }

@@ -2,13 +2,13 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Deque<T>{
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private class LinkedListNode{
         LinkedListNode prev;
         T item;
         LinkedListNode next;
 
-        public LinkedListNode(LinkedListNode p, T x, LinkedListNode n){
+        public LinkedListNode(LinkedListNode p, T x, LinkedListNode n) {
             prev = p;
             item = x;
             next = n;
@@ -20,20 +20,20 @@ public class LinkedListDeque<T> implements Deque<T>{
     private int size;
 
     /** constructor */
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         headSentinel = new LinkedListNode(null, null, null);
         tailSentinel = new LinkedListNode(headSentinel, null, null);
         headSentinel.next = tailSentinel;
         size = 0;
     }
 
-    public void addFirst(T item){
+    public void addFirst(T item) {
         headSentinel.next = new LinkedListNode(headSentinel, item, headSentinel.next);
         headSentinel.next.next.prev = headSentinel.next;
         size++;
     }
 
-    public void addLast(T item){
+    public void addLast(T item) {
         tailSentinel.prev = new LinkedListNode(tailSentinel.prev, item, tailSentinel);
         tailSentinel.prev.prev.next = tailSentinel.prev;
         size++;
@@ -43,19 +43,19 @@ public class LinkedListDeque<T> implements Deque<T>{
         return size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         LinkedListNode p = headSentinel.next;
-        while (p != tailSentinel){
+        while (p != tailSentinel) {
             System.out.print(p.item + " ");
             p = p.next;
         }
         System.out.println();
     }
 
-    public T removeLast(){
-        if (size == 0)
+    public T removeLast() {
+        if (size == 0) {
             return null;
-        else {
+        } else {
             T theItem = tailSentinel.prev.item;
             tailSentinel.prev = tailSentinel.prev.prev;
             tailSentinel.prev.next = tailSentinel;
@@ -64,9 +64,10 @@ public class LinkedListDeque<T> implements Deque<T>{
         }
     }
 
-    public T removeFirst(){
-        if (size == 0)
+    public T removeFirst() {
+        if (size == 0) {
             return null;
+        }
         else {
             T theItem = headSentinel.next.item;
             headSentinel.next = headSentinel.next.next;
@@ -76,29 +77,30 @@ public class LinkedListDeque<T> implements Deque<T>{
         }
     }
 
-    public T get(int index){
+    public T get(int index) {
         LinkedListNode p = headSentinel.next;
         int i;
         for (i = 0; i < size && i < index; i++){
             p = p.next;
         }
-        if (i == size)
+        if (i == size){
             return null;
-        else
+        } else
             return p.item;
     }
 
     private T getRecursiveHelper(int index, LinkedListNode p) {
-        if (index == 0)
+        if (index == 0){
             return p.item;
-        else if (p.next == tailSentinel) {
-            return null;
         } else {
             return getRecursiveHelper(index--, p.next);
         }
     }
 
     public T getRecursive(int index) {
+        if (index >= size){
+            return null;
+        }
         return getRecursiveHelper(index, headSentinel.next);
     }
 
@@ -130,16 +132,17 @@ public class LinkedListDeque<T> implements Deque<T>{
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        }else if (o == null) {
+        } else if (o == null) {
             return false;
-        }else if (o.getClass() != this.getClass()) {
+        } else if (o.getClass() != this.getClass()) {
             return false;
-        }else if (((LinkedListDeque<?>) o).size != size) {
+        } else if (((LinkedListDeque<?>) o).size != size) {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (((LinkedListDeque<?>) o).get(i) != get(i))
+            if (((LinkedListDeque<?>) o).get(i) != get(i)){
                 return false;
+            }
         }
         return true;
     }
