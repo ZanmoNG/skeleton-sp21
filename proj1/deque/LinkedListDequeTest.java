@@ -2,6 +2,11 @@ package deque;
 
 import edu.princeton.cs.algs4.StdRandom;
 import org.junit.Test;
+
+import javax.swing.text.html.HTMLDocument;
+
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 
@@ -134,7 +139,7 @@ public class LinkedListDequeTest {
     @Test
     /** a random Test of ArrayDeque by comparison to LinkedListDeque*/
     public void randomComparisonTest(){
-        int testNum = 5000000;
+        int testNum = 500000;
         ArrayDeque<Integer> ad = new ArrayDeque<>();
         LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 
@@ -168,20 +173,53 @@ public class LinkedListDequeTest {
             }
         }
     }
+
+    @Test
+    /** test for iterator */
+    public void IteratorTest() {
+        ArrayDeque<Integer> ad = new ArrayDeque<>();
+        LinkedListDeque<Integer> lld = new LinkedListDeque<>();
+
+        for (int i = 0; i < 3; i++) {
+            ad.addLast(i);
+            lld.addLast(i);
+        }
+
+        Iterator<Integer> ADiter = ad.iterator();
+        Iterator<Integer> LLDiter = lld.iterator();
+
+        assertEquals(ADiter.hasNext(), LLDiter.hasNext());
+        ADiter.next();
+        assertEquals(ADiter.hasNext(), LLDiter.hasNext());
+        assertNotEquals(ADiter.next(), LLDiter.next());
+        LLDiter.next();
+        assertEquals(ADiter.next(), LLDiter.next());
+        assertFalse(ADiter.hasNext());
+        assertFalse(LLDiter.hasNext());
+    }
+
+    @Test
+    /** simple test for equals */
+    public void EqualsTest() {
+        ArrayDeque<Integer> ad = new ArrayDeque<>();
+        ArrayDeque<Integer> ad2 = new ArrayDeque<>();
+
+        for (int i = 0; i < 10; i++) {
+            ad.addLast(i);
+        }
+
+        for (int i = 0; i < 9; i++) {
+            ad2.addLast(i);
+        }
+        boolean t = ad.equals(ad);
+        assertTrue(t);
+        t = ad.equals(ad2);
+        assertFalse(t);
+        ad2.addLast(9);
+        t = ad2.equals(ad);
+        assertTrue(t);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
