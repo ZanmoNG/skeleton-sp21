@@ -1,6 +1,8 @@
 package deque;
 
-public class LinkedListDeque<T> {
+import java.util.Iterator;
+
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
     private class LinkedListNode{
         LinkedListNode prev;
         T item;
@@ -35,10 +37,6 @@ public class LinkedListDeque<T> {
         tailSentinel.prev = new LinkedListNode(tailSentinel.prev, item, tailSentinel);
         tailSentinel.prev.prev.next = tailSentinel.prev;
         size++;
-    }
-
-    public boolean isEmpty(){
-        return size == 0;
     }
 
     public int size(){
@@ -88,5 +86,43 @@ public class LinkedListDeque<T> {
             return null;
         else
             return p.item;
+    }
+
+    private T getRecursiveHelper(int index, LinkedListNode p) {
+        if (index == 0)
+            return p.item;
+        else if (p.next == tailSentinel) {
+            return null;
+        } else {
+            return getRecursiveHelper(index--, p.next);
+        }
+    }
+
+    public T getRecursive(int index) {
+        return getRecursiveHelper(index, headSentinel.next);
+    }
+
+    private class LLDIterator implements Iterator<T> {
+        private LinkedListNode p;
+
+        public LLDIterator() {
+            p = headSentinel.next;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return p != tailSentinel;
+        }
+
+        @Override
+        public T next() {
+            T theItem = p.item;
+            p = p.next;
+            return theItem;
+        }
+    }
+
+    public Iterator<T> iterator() {
+        return new LLDIterator();
     }
 }

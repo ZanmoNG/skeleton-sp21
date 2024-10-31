@@ -134,11 +134,11 @@ public class LinkedListDequeTest {
     @Test
     /** a random Test of ArrayDeque by comparison to LinkedListDeque*/
     public void randomComparisonTest(){
-        int NUM = 50000;
+        int testNum = 5000000;
         ArrayDeque<Integer> ad = new ArrayDeque<>();
         LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 
-        for (int i = 0; i < NUM; i++) {
+        for (int i = 0; i < testNum; i++) {
             int operatorNumber = StdRandom.uniform(0,5);
             if (operatorNumber == 0) {
                 int randval = StdRandom.uniform(0, 100);
