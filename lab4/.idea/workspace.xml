@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81896274-8619-4dba-9fcc-f752bb7abaca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../ArraySet/src/ArraySet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ArraySet/src/ArraySet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ArraySet/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ArraySet/src/Dog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ArraySet/src/Dogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ArraySet/src/Dogs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../exercise/untitled/src/bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise/untitled/src/bear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proj0/game2048/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj0/game2048/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proj1/target/classes/gh2/GuitarString.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/target/classes/gh2/GuitarString.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/ALList/LinkedListDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/ALList/LinkedListDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/ALList/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/ALList/List.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/ALList/RotatingList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/ALList/RotatingList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/ALList/VengefulSLList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/ALList/VengefulSLList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/ALList/WordUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/ALList/WordUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/firstProgram/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/firstProgram/src/Dog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/intLists/src/MyIntList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/intLists/src/MyIntList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/intLists/src/WordUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/intLists/src/WordUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/src/CS61BLauncher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slide_exp/src/CS61BStudent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flik/Flik.java" beforeDir="false" afterPath="$PROJECT_DIR$/flik/Flik.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/flik/Flik.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/flik/Flik.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,16 +32,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HorribleSteve.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/cscode/cs61b/skeleton-sp21/lab4/pom.xml&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HorribleSteve.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/cscode/cs61b/skeleton-sp21/proj1/pom.xml",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="HorribleSteve" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="flik.HorribleSteve" />
