@@ -3,12 +3,12 @@ package deque;
 import java.util.Iterator;
 
 public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
-    private class LinkedListNode{
+    private class LinkedListNode {
         LinkedListNode prev;
         T item;
         LinkedListNode next;
 
-        public LinkedListNode(LinkedListNode p, T x, LinkedListNode n) {
+        LinkedListNode(LinkedListNode p, T x, LinkedListNode n) {
             prev = p;
             item = x;
             next = n;
@@ -39,7 +39,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         size++;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
@@ -67,8 +67,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     public T removeFirst() {
         if (size == 0) {
             return null;
-        }
-        else {
+        } else {
             T theItem = headSentinel.next.item;
             headSentinel.next = headSentinel.next.next;
             headSentinel.next.prev = headSentinel;
@@ -80,17 +79,17 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     public T get(int index) {
         LinkedListNode p = headSentinel.next;
         int i;
-        for (i = 0; i < size && i < index; i++){
+        for (i = 0; i < size && i < index; i++) {
             p = p.next;
         }
-        if (i == size){
+        if (i == size) {
             return null;
         } else
             return p.item;
     }
 
     private T getRecursiveHelper(int index, LinkedListNode p) {
-        if (index == 0){
+        if (index == 0) {
             return p.item;
         } else {
             return getRecursiveHelper(index--, p.next);
@@ -98,7 +97,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     public T getRecursive(int index) {
-        if (index >= size){
+        if (index >= size) {
             return null;
         }
         return getRecursiveHelper(index, headSentinel.next);
@@ -140,7 +139,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (((LinkedListDeque<?>) o).get(i) != get(i)){
+            if (((LinkedListDeque<?>) o).get(i) != get(i)) {
                 return false;
             }
         }

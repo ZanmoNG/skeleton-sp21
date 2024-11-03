@@ -10,7 +10,7 @@ public class TestMaxAD {
         String name;
         int weight;
 
-        public Dog(String theName, int theWeight) {
+        Dog(String theName, int theWeight) {
             name = theName;
             weight = theWeight;
         }

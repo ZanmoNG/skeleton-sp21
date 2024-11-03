@@ -52,27 +52,26 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     public T removeFirst() {
         if (size == 0) {
             return null;
-        }
-        else {
+        } else {
             T theItem = items[headIndex];
             items[headIndex] = null;
             headIndex++;
             size--;
-            if (size >= 400 && size < items.length / 4){
+            if (size >= 400 && size < items.length / 4) {
                 resize((int) (items.length / 3));
             }
             return theItem;
         }
     }
 
-    public T removeLast(){
+    public T removeLast() {
         if (size == 0) {
             return null;
         } else {
             T theItem = items[headIndex + size - 1];
             items[headIndex + size - 1] = null;
             size--;
-            if (size >= 400 && size < items.length / 4){
+            if (size >= 400 && size < items.length / 4) {
                 resize((int) (items.length / 3));
             }
             return theItem;
@@ -86,7 +85,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private class ADIterator implements Iterator<T> {
         private int i;
 
-        public ADIterator() {
+        ADIterator() {
             i = 0;
         }
 
@@ -118,7 +117,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (((ArrayDeque<?>) o).get(i) != get(i)){
+            if (((ArrayDeque<?>) o).get(i) != get(i)) {
                 return false;
             }
         }
