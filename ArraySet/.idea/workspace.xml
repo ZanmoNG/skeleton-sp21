@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="22c12244-7e36-42f0-acdb-8acb2f7ea163" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ArraySet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dogs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../slide_exp/ALList/LinkedListDeque.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../slide_exp/ALList/List.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../slide_exp/ALList/RotatingList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../slide_exp/ALList/VengefulSLList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../slide_exp/ALList/WordUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../slide_exp/intLists/src/WordUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise/untitled/src/bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise/untitled/src/bear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj0/game2048/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj0/game2048/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/deque/ArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/deque/ArrayDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/deque/LinkedListDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/deque/LinkedListDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/deque/LinkedListDequeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/deque/LinkedListDequeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/target/classes/deque/LinkedListDequeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/target/classes/deque/LinkedListDequeTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/firstProgram/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/firstProgram/src/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/intLists/src/MyIntList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/intLists/src/MyIntList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/src/CS61BLauncher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/src/CS61BStudent.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\cscode\cs61b\skeleton-sp21\library-sp21\javalib" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2o8TfCPzelthERda16v9N8VwSeE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ArraySet.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/cscode/cs61b/skeleton-sp21/proj1/pom.xml",
+    "settings.editor.selected.configurable": "MavenSettings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ArraySet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ArraySet" />
+      <module name="ArraySet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ArraySet" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="22c12244-7e36-42f0-acdb-8acb2f7ea163" name="Changes" comment="" />
+      <created>1730250305551</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730250305551</updated>
+    </task>
+    <servers />
+  </component>
+</project>

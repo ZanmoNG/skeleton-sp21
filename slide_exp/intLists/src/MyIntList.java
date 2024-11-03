@@ -1,21 +1,21 @@
-public class IntList {
+public class MyIntList {
     public int first;
-    public IntList rest;
+    public MyIntList rest;
 
-    public IntList(int f, IntList r) {
+    public MyIntList(int f, MyIntList r) {
         first = f;
         rest = r;
     }
 
     public void addFirst(int x) {
-        IntList t = new IntList(first, rest);
+        MyIntList t = new MyIntList(first, rest);
         first = x;
         rest = t;
     }
 
     /** Return the size of the list using no recursion! */
     public int iterativeSize() {
-        IntList p = this;
+        MyIntList p = this;
         int totalSize = 0;
         while (p != null) {
             totalSize += 1;
@@ -39,10 +39,10 @@ public class IntList {
 
     public static void main(String[] args) {
         System.out.println(1);
-        IntList t = new IntList(3, null);
-        t = new IntList(2, t);
-        t = new IntList(1, t);
-        t = new IntList(1, t);
+        MyIntList t = new MyIntList(3, null);
+        t = new MyIntList(2, t);
+        t = new MyIntList(1, t);
+        t = new MyIntList(1, t);
         System.out.println(1);
         t.addAdjacent();
         System.out.println(t.iterativeSize());

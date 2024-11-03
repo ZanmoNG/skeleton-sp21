@@ -113,6 +113,12 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+
+        // 1 分析处理不同side
+        // 2 实现位移
+
+
+
         this.board.setViewingPerspective(side);
         changed = upHelper();
         this.board.setViewingPerspective(Side.NORTH);
@@ -124,8 +130,10 @@ public class Model extends Observable {
         }
         return changed;
     }
-
+    /** 实现向上移动 */
     public boolean upHelper(){
+        // 循环 列数
+        //      每一列向上移动
         boolean changed = false;
         for (int i = 0; i < this.board.size(); i++){
             if (oneColumnUp(i))
@@ -136,12 +144,14 @@ public class Model extends Observable {
 
     /** implement one column up */
     public boolean oneColumnUp(int column){
+        // 对于一列，从上至下分析
         boolean changed = false;
         int goal_row = this.board.size() - 1;
+        // 或许用while更好
         for (int i = this.board.size() - 2; i >= 0; i--){
             Tile t = this.board.tile(column, i);
             if (t == null) {
-                /* if this is empty, next row */
+                /* if this row is empty, next row */
                 continue;
             }
             else if (this.board.tile(column, goal_row) == null){

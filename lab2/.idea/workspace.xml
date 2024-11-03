@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4bddc3e7-1d56-4b46-b5a0-ea3a43895d88" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../exercise/untitled/src/bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise/untitled/src/bear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj0/game2048/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj0/game2048/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/firstProgram/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/firstProgram/src/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/intLists/src/MyIntList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slide_exp/intLists/src/MyIntList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/src/CS61BLauncher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slide_exp/src/CS61BStudent.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2njaFZ2BsOu5CKiwoNm4HVkoSuy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DebugExercise1.executor": "Debug",
+    "Application.DebugExercise2.executor": "Run",
+    "Application.Primes.executor": "Run",
+    "JUnit.AddConstantTest.executor": "Run",
+    "JUnit.ArithmeticTest.executor": "Run",
+    "JUnit.SetToZeroIfMaxFELTest.executor": "Run",
+    "JUnit.SetToZeroIfMaxFELTest.testZeroOutFELMaxes3.executor": "Run",
+    "JUnit.SquarePrimesTest.executor": "Run",
+    "JUnit.SquarePrimesTest.testSquarePrimes2.executor": "Run",
+    "JUnit.SquarePrimesTest.testSquarePrimesSimple.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/cscode/cs61b/skeleton-sp21/slide_exp/intLists",
+    "settings.editor.selected.configurable": "MavenSettings"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.AddConstantTest">
+    <configuration name="AddConstantTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IntList.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="IntList" />
+      <option name="MAIN_CLASS_NAME" value="IntList.AddConstantTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SetToZeroIfMaxFELTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IntList.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="IntList" />
+      <option name="MAIN_CLASS_NAME" value="IntList.SetToZeroIfMaxFELTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SetToZeroIfMaxFELTest.testZeroOutFELMaxes3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IntList.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="IntList" />
+      <option name="MAIN_CLASS_NAME" value="IntList.SetToZeroIfMaxFELTest" />
+      <option name="METHOD_NAME" value="testZeroOutFELMaxes3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SquarePrimesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IntList.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="IntList" />
+      <option name="MAIN_CLASS_NAME" value="IntList.SquarePrimesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SquarePrimesTest.testSquarePrimes2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IntList.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="IntList" />
+      <option name="MAIN_CLASS_NAME" value="IntList.SquarePrimesTest" />
+      <option name="METHOD_NAME" value="testSquarePrimes2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AddConstantTest" />
+        <item itemvalue="JUnit.SquarePrimesTest" />
+        <item itemvalue="JUnit.SetToZeroIfMaxFELTest" />
+        <item itemvalue="JUnit.SquarePrimesTest.testSquarePrimes2" />
+        <item itemvalue="JUnit.SetToZeroIfMaxFELTest.testZeroOutFELMaxes3" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4bddc3e7-1d56-4b46-b5a0-ea3a43895d88" name="Changes" comment="" />
+      <created>1729488835238</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729488835238</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/DebugExercise/DebugExercise1.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/DebugExercise/DebugExercise2.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

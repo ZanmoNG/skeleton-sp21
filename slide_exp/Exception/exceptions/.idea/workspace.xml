@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e5e6b624-d0fd-4f9b-b102-9b742b7f6ef9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../ArraySet/src/ArraySet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ArraySet/src/ArraySet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ArraySet/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ArraySet/src/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ArraySet/src/Dogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ArraySet/src/Dogs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../exercise/untitled/src/bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../exercise/untitled/src/bear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../proj0/game2048/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../proj0/game2048/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../proj1/target/classes/gh2/GuitarString.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../proj1/target/classes/gh2/GuitarString.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ALList/LinkedListDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ALList/LinkedListDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ALList/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ALList/List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ALList/RotatingList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ALList/RotatingList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ALList/VengefulSLList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ALList/VengefulSLList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ALList/WordUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ALList/WordUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../firstProgram/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../firstProgram/src/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../intLists/src/MyIntList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../intLists/src/MyIntList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../intLists/src/WordUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../intLists/src/WordUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/CS61BLauncher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/CS61BStudent.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\cscode\cs61b\skeleton-sp21\library-sp21\javalib" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2oK2IeYAHffRXjPQ9fipU8PAGiz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/cscode/cs61b/skeleton-sp21/lab4/pom.xml",
+    "settings.editor.selected.configurable": "MavenSettings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="exceptions" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="exceptions" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e5e6b624-d0fd-4f9b-b102-9b742b7f6ef9" name="Changes" comment="" />
+      <created>1730603869392</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730603869392</updated>
+    </task>
+    <servers />
+  </component>
+</project>

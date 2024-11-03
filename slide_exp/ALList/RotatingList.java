@@ -1,4 +1,8 @@
-package PACKAGE_NAME;
+public class RotatingList<T> extends LinkedListDeque<T>{
 
-public class RotatingList {
+    public void RotatingRight() {
+        T item = removeLast();
+        addFirst(item);
+    }
+
 }
