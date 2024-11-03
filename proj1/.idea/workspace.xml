@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2206bd0b-555b-4165-8398-988b8af5c7ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../lab4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab4/flik/Flik.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/flik/Flik.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab4/target/classes/flik/Flik.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/target/classes/flik/Flik.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deque/ArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/ArrayDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deque/Deque.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/Deque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deque/LinkedListDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/LinkedListDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deque/MaxArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/MaxArrayDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deque/TestMaxAD.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/TestMaxAD.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +64,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.TTFAF">
+  <component name="RunManager" selected="JUnit.LinkedListDequeTest.randomComparisonTest">
     <configuration name="GuitarHero" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gh2.GuitarHero" />
       <module name="proj1" />
@@ -126,17 +120,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestGuitarString.testTicCalculations" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LinkedListDequeTest.randomComparisonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="proj1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gh2.*" />
+          <option name="PATTERN" value="deque.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="gh2" />
-      <option name="MAIN_CLASS_NAME" value="gh2.TestGuitarString" />
-      <option name="METHOD_NAME" value="testTicCalculations" />
+      <option name="PACKAGE_NAME" value="deque" />
+      <option name="MAIN_CLASS_NAME" value="deque.LinkedListDequeTest" />
+      <option name="METHOD_NAME" value="randomComparisonTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -144,11 +138,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LinkedListDequeTest.randomComparisonTest" />
         <item itemvalue="Application.TTFAF" />
         <item itemvalue="JUnit.LinkedListDequeTest.EqualsTest" />
         <item itemvalue="Application.GuitarHero" />
         <item itemvalue="Application.GuitarHeroLite" />
-        <item itemvalue="JUnit.TestGuitarString.testTicCalculations" />
       </list>
     </recent_temporary>
   </component>
