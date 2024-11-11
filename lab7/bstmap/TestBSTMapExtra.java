@@ -1,5 +1,6 @@
 package bstmap;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.HashSet;
 import static org.junit.Assert.*;
@@ -111,6 +112,26 @@ public class TestBSTMapExtra {
         assertTrue(((Integer) noChild.remove('Z')).equals(15));
         assertEquals(0, noChild.size());
         assertEquals(null, noChild.get('Z'));
+    }
+
+    @Test
+    public void TestIter() {
+        BSTMap<String,String> q = new BSTMap<String,String>();
+        q.put("c","c");
+        q.put("b","b");
+        q.put("a","a");
+        q.put("d","d");
+        q.put("e","e");
+        Iterator<String> iter = q.iterator();
+        assertTrue(iter.hasNext());
+        assertEquals(iter.next(), "a");
+        assertEquals(iter.next(), "b");
+        assertEquals(iter.next(), "c");
+        assertTrue(iter.hasNext());
+        assertEquals(iter.next(), "d");
+        assertEquals(iter.next(), "e");
+        assertFalse(iter.hasNext());
+        assertNull(iter.next());
     }
 
 }

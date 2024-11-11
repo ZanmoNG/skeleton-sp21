@@ -3,6 +3,7 @@ package bstmap;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
 
@@ -88,13 +89,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
     }
 
 
-    private void insert(BSTNode p, K key, V value) {
-        BSTNode next;
-        if (key.compareTo(p.key) < 0) {
-
-        }
-    }
-
     private BSTNode put(BSTNode t, K key, V value) {
         if (t == null) {
             size += 1;
@@ -117,32 +111,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
     public Set<K> keySet(){
         throw new UnsupportedOperationException("not yet");
     }
-
-//    /** return the next bigger node of the key
-//     *  works only in case that t has 2 children */
-//    private BSTNode nextNode(BSTNode t) {
-//        t = t.right;
-//        while (t.left != null) {
-//            t = t.left;
-//        }
-//        return t;
-//    }
-
-//    /** find the parent of t, return sentinel if t is root */
-//    private BSTNode findParent(BSTNode t, BSTNode p) {
-//        if (p.left == t) {
-//            return p;
-//        } else if (p.right == t) {
-//            return p;
-//        } else if (t.key.compareTo(p.key) < 0) {
-//            return findParent(t, p.left);
-//        } else if (t.key.compareTo(p.key) > 0) {
-//            return findParent(t, p.right);
-//        } else {
-//            System.out.println("sth wrong in findParent");
-//            return null;
-//        }
-//    }
 
     private BSTNode Min(BSTNode t) {
         if (t == null) {
@@ -206,19 +174,19 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
 
     private class KeyIterator implements Iterator<K> {
         private int isize;
-        private ArrayList<K> al = new ArrayList<>();
+        private LinkedList<K> ll = new LinkedList<>();
 
-        private void ArrayListBuilder(BSTNode t) {
+        private void LinkedListBuilder(BSTNode t) {
             if (t != null) {
-                ArrayListBuilder(t.left);
-                al.addLast(t.key);
-                ArrayListBuilder(t.right);
+                LinkedListBuilder(t.left);
+                ll.addLast(t.key);
+                LinkedListBuilder(t.right);
             }
         }
 
         public KeyIterator() {
             isize = 0;
-            ArrayListBuilder(sentinel.left);
+            LinkedListBuilder(sentinel.left);
         }
 
         @Override
@@ -228,9 +196,12 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
 
         @Override
         public K next() {
-            K item = al.get(isize);
-            isize += 1;
-            return item;
+            if (hasNext()) {
+                K item = ll.get(isize);
+                isize += 1;
+                return item;
+            }
+            return null;
         }
     }
 
