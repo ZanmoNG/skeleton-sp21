@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="40665ef9-e8cd-4b59-96ad-9fb86642c7b8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/bstmap/BSTMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/bstmap/BSTMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/deque/ArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/deque/ArrayDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/deque/LinkedListDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/deque/LinkedListDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/deque/MaxArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/deque/MaxArrayDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/gh2/GuitarHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/gh2/GuitarHero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proj1/gh2/TestGuitarString.java" beforeDir="false" afterPath="$PROJECT_DIR$/../proj1/gh2/TestGuitarString.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\cscode\cs61b\skeleton-sp21\library-sp21\javalib" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2ocFVMH4OrVgc0ALB0VK0vacuTk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.InsertInOrderSpeedTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.InsertRandomSpeedTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMap.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMap.sanityClearTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMap.sanityGenericsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMapExtra.TestIter.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMapExtra.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMapExtra.sanityKeySetTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMapExtra.testRemoveRoot.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBSTMapExtra.testRemoveThreeCases.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/cscode/cs61b/skeleton-sp21/lab7/pom.xml&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.InsertInOrderSpeedTest">
+    <configuration name="InsertInOrderSpeedTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bstmap.InsertInOrderSpeedTest" />
+      <module name="lab7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bstmap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBSTMapExtra.TestIter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bstmap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bstmap" />
+      <option name="MAIN_CLASS_NAME" value="bstmap.TestBSTMapExtra" />
+      <option name="METHOD_NAME" value="TestIter" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBSTMapExtra.sanityKeySetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bstmap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bstmap" />
+      <option name="MAIN_CLASS_NAME" value="bstmap.TestBSTMapExtra" />
+      <option name="METHOD_NAME" value="sanityKeySetTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBSTMapExtra.testRemoveRoot" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bstmap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bstmap" />
+      <option name="MAIN_CLASS_NAME" value="bstmap.TestBSTMapExtra" />
+      <option name="METHOD_NAME" value="testRemoveRoot" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBSTMapExtra.testRemoveThreeCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bstmap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bstmap" />
+      <option name="MAIN_CLASS_NAME" value="bstmap.TestBSTMapExtra" />
+      <option name="METHOD_NAME" value="testRemoveThreeCases" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestBSTMapExtra.TestIter" />
+        <item itemvalue="JUnit.TestBSTMapExtra.testRemoveThreeCases" />
+        <item itemvalue="JUnit.TestBSTMapExtra.testRemoveRoot" />
+        <item itemvalue="JUnit.TestBSTMapExtra.sanityKeySetTest" />
+        <item itemvalue="Application.InsertInOrderSpeedTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="40665ef9-e8cd-4b59-96ad-9fb86642c7b8" name="Changes" comment="" />
+      <created>1731160979077</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731160979077</updated>
+    </task>
+    <servers />
+  </component>
+</project>

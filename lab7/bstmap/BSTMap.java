@@ -1,9 +1,6 @@
 package bstmap;
 
-import java.util.Iterator;
-import java.util.Set;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
 
@@ -109,7 +106,19 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
     }
 
     public Set<K> keySet(){
-        throw new UnsupportedOperationException("not yet");
+        HashSet<K> hs = new HashSet<>();
+        addKeys(sentinel.left, hs);
+        return hs;
+    }
+
+    private void addKeys(BSTNode t, Set<K> set) {
+        if (t == null) {
+            return;
+        } else {
+            set.add(t.key);
+            addKeys(t.left, set);
+            addKeys(t.right, set);
+        }
     }
 
     private BSTNode Min(BSTNode t) {

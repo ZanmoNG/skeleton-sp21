@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2206bd0b-555b-4165-8398-988b8af5c7ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../lab7/bstmap/BSTMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab7/bstmap/BSTMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deque/ArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/ArrayDeque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deque/LinkedListDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/LinkedListDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deque/MaxArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/deque/MaxArrayDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gh2/GuitarHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/gh2/GuitarHero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gh2/TestGuitarString.java" beforeDir="false" afterPath="$PROJECT_DIR$/gh2/TestGuitarString.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,31 +44,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.GuitarHero.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GuitarHeroLite.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TTFAF.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LinkedListDequeTest.EqualsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LinkedListDequeTest.IteratorTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LinkedListDequeTest.addIsEmptySizeTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LinkedListDequeTest.addRemoveTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LinkedListDequeTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LinkedListDequeTest.randomComparisonTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LinkedListDequeTest.removeEmptyTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestGuitarString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.TestGuitarString.testTic.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestGuitarString.testTicCalculations.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestMaxAD.NameComparatorTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.TestMaxAD.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/cscode/cs61b/skeleton-sp21/proj1/pom.xml&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.GuitarHero.executor": "Run",
+    "Application.GuitarHeroLite.executor": "Run",
+    "Application.TTFAF.executor": "Run",
+    "JUnit.LinkedListDequeTest.EqualsTest.executor": "Run",
+    "JUnit.LinkedListDequeTest.IteratorTest.executor": "Run",
+    "JUnit.LinkedListDequeTest.addIsEmptySizeTest.executor": "Run",
+    "JUnit.LinkedListDequeTest.addRemoveTest.executor": "Run",
+    "JUnit.LinkedListDequeTest.executor": "Run",
+    "JUnit.LinkedListDequeTest.randomComparisonTest.executor": "Run",
+    "JUnit.LinkedListDequeTest.removeEmptyTest.executor": "Run",
+    "JUnit.TestGuitarString.executor": "Debug",
+    "JUnit.TestGuitarString.testTic.executor": "Run",
+    "JUnit.TestGuitarString.testTicCalculations.executor": "Run",
+    "JUnit.TestMaxAD.NameComparatorTest.executor": "Debug",
+    "JUnit.TestMaxAD.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/cscode/cs61b/skeleton-sp21/lab6/pom.xml",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="JUnit.LinkedListDequeTest.randomComparisonTest">
     <configuration name="GuitarHero" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gh2.GuitarHero" />

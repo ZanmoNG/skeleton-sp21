@@ -3,9 +3,9 @@ package deque;
 import java.util.Iterator;
 
 public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
-    T[] items;
-    int headIndex;
-    int size;
+    private T[] items;
+    private int headIndex;
+    private int size;
 
     public ArrayDeque() {
         items = (T[]) new Object[100];

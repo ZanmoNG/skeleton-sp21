@@ -84,8 +84,9 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         }
         if (i == size) {
             return null;
-        } else
+        } else {
             return p.item;
+        }
     }
 
     private T getRecursiveHelper(int index, LinkedListNode p) {
@@ -106,7 +107,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private class LLDIterator implements Iterator<T> {
         private LinkedListNode p;
 
-        public LLDIterator() {
+        LLDIterator() {
             p = headSentinel.next;
         }
 
