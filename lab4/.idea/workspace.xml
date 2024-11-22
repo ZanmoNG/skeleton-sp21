@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81896274-8619-4dba-9fcc-f752bb7abaca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flik/Flik.java" beforeDir="false" afterPath="$PROJECT_DIR$/flik/Flik.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/flik/Flik.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/flik/Flik.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab6/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab6/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +36,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/cscode/cs61b/skeleton-sp21/proj1/pom.xml",
+    "last_opened_file_path": "C:/cscode/cs61b/skeleton-sp21/lab6/pom.xml",
     "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
