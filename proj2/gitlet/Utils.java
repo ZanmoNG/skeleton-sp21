@@ -63,6 +63,10 @@ class Utils {
         return sha1(vals.toArray(new Object[vals.size()]));
     }
 
+
+    static String sha1(File f) {
+        return sha1(readContentsAsString(f));
+    }
     /* FILE DELETION */
 
     /** Deletes FILE if it exists and is not a directory.  Returns true
@@ -90,7 +94,7 @@ class Utils {
 
     /* READING AND WRITING FILE CONTENTS */
 
-    /** Return the entire contents of FILE as a byte array.  FILE must
+    /** Return the entire contents of FILE as a byte ar0ray.  FILE must
      *  be a normal file.  Throws IllegalArgumentException
      *  in case of problems. */
     static byte[] readContents(File file) {
