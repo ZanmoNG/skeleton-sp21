@@ -1,7 +1,7 @@
 package gitlet;
 
 import java.io.File;
-import java.util.HashMap;
+import java.util.*;
 
 import static gitlet.Utils.*;
 
@@ -119,12 +119,163 @@ public class MainHelper {
         CommitTree.displayAll();
     }
 
-    /** java gitlet.Main global-log */
-    public static void findHelper() {
+    /** java gitlet.Main find [commit message] */
+    public static void findHelper(String msg) {
+        // read through all folders
+        for (int i = 1; i <= 256; i++) {
+            String folderId = Integer.toHexString(i);
+            File folder = join(Repository.COMMIT_FOLDER, folderId);
+            if (folder.exists()) {
+                List<String> fileList = plainFilenamesIn(folder);
+                // read all files in folder
+                for (String file: fileList) {
+                    Commit c = Commit.readCommit(file);
+                    if (c.getMessage().equals(msg)) {
+                        System.out.println(c.getId());
+                    }
+                }
+            }
+        }
+    }
+
+    /** java gitlet.Main status */
+    public static void statusHelper() {
+        // === Branches ===
+            // read the CommitTree master and branches
+        String branchesString = "=== Branches ===\n";
+        CommitTree ct = CommitTree.readCommitTree();
+        CommitTree.branch master = ct.getMaster();
+        List<CommitTree.branch> branches = ct.getBranches();
+        branchesString = branchesString + "*" + master.getMsg() + "\n";
+        for (CommitTree.branch branch: branches) {
+            branchesString = branchesString + branch.getMsg() + '\n';
+        }
+        System.out.println(branchesString);
+
+        // === Staged Files ===
+            // read the StagingArea addedFiles
+        String stagedFilesString = "=== Staged Files ===\n";
+        StagingArea sa = StagingArea.readStagingArea();
+        Set<String> addedFileNames = sa.getAddedFiles().keySet();
+        for (String name: addedFileNames) {
+            stagedFilesString = stagedFilesString + name + "\n";
+        }
+        System.out.println(stagedFilesString);
+
+        // === Removed Files ===
+            // read the StagingArea removal
+        String removedFilesString = "=== Removed Files ===";
+        List<String> deletedFileNames = sa.getRemoval();
+        for (String name: deletedFileNames) {
+            removedFilesString = removedFilesString + name + "\n";
+        }
+        System.out.println(removedFilesString);
+
+        System.out.println("=== Modifications Not Staged For Commit ===\n"
+                            + "\n=== Untracked Files ===\n");
+
+        // TODO: extra credit
+        /*
+        // === Modifications Not Staged For Commit ===
+        String modificatioinsString = "=== Modifications Not Staged For Commit ===";
+        LinkedList<String> modifiedFiles = new LinkedList<>();
+            // read the current commit
+        Commit currentCommit = Head.readHeadAsCommit();
+        Map<String, String> currentCommitFiles = currentCommit.getCommitFiles();
+        for(String fileName: currentCommitFiles.keySet()) {
+            File path = join(Repository.CWD, fileName);
+            if (!path.exists()) {
+                // TODO: add to modifiedFiles
+            }
+        }
+            // compare to StagingArea
+
+
+
+        // === Untracked Files ===
+        */
+    }
+
+    /** decide which checkout method to choose from */
+    public static void checkoutHelper() {
 
     }
 
+    /** java gitlet.Main checkout -- [file name]*/
+    public static void checkoutHelper_1(String filename) {
+        // read the head
+        Commit h = Head.readHeadAsCommit();
+        // read the file
+        File file = h.getFile(filename);
+        if (file == null) {
+            throw error("File does not exist in that commit.");
+        }
+        // rewrite the file
+        String contents = readContentsAsString(file);
+        file = join(Repository.CWD, filename);
+        writeContents(file, contents);
+    }
 
+    /** java gitlet.Main checkout [commit id] -- [file name] */
+    public static void checkoutHelper_2(String id, String filename) {
+        // read the commit
+        Commit c = Commit.readCommit(id);
+        // read the file
+        File file = c.getFile(filename);
+        if (file == null) {
+            throw error("File does not exist in that commit.");
+        }
+        // rewrite the file
+        String contents = readContentsAsString(file);
+        file = join(Repository.CWD, filename);
+        writeContents(file, contents);
+    }
 
+    /** java gitlet.Main checkout [branch name] */
+    public static void checkoutHelper_3() {
+        // read the branch
 
+        // read the file
+
+        // add to CWD
+
+        // change Head
+
+        // clear staging area
+    }
+
+    /** java gitlet.Main branch [branch name]
+     *  Creates a new branch with the given name,
+     *  and points it at the current head commit.
+     *  This command does NOT immediately switch to the newly created branch
+     *  A branch is nothing more than a name for a reference
+     * */
+    public static void branchHelper(String name) {
+        // create new branch in commitTree, with the provided name
+        CommitTree.addBranch(name);
+    }
+
+    /** java gitlet.Main rm-branch [branch name] */
+    public static void rmBranchHelper(String name) {
+        // remove in the commitTree's branches
+        CommitTree.rmBranch(name);
+    }
+
+    /** java gitlet.Main reset [commit id] */
+    public static void resetHelper() {
+        // remove all files in CWD
+
+        // read the commit and cp all the files into CWD
+
+        // move the head
+
+        /*TODO: maybe we can delete files and move head, and just checkout then*/
+    }
+
+    /** java gitlet.Main merge [branch name]
+     *  Merges files from the given branch into the current branch.
+     * */
+    public static void mergeHelper() {
+        //
+    }
 }

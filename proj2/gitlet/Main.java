@@ -40,7 +40,23 @@ public class Main {
                 globalLogHelper();
                 break;
             case "find":
-            // TODO: FILL THE REST IN
+                findHelper(args[1]);
+                break;
+            case "status":
+                statusHelper();
+                break;
+            case "checkout":
+                int len = args.length;
+                if (len == 2) {
+                    checkoutHelper_3();
+                } else if (len == 3) {
+                    checkoutHelper_1(args[2]);
+                } else if (len == 4) {
+                    checkoutHelper_2(args[1], args[3]);
+                }
+                break;
+            case "branch":
+                branchHelper(args[1]);
             /* If a user inputs a command that doesn’t exist,
             print the message and exit. */
             default:

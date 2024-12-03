@@ -48,7 +48,7 @@ public class StagingArea implements Serializable {
 
     /** this method will clear the staging area */
     public static void clearArea() {
-        restrictedDelete(Repository.STAGING_FILE);
+        Repository.STAGING_FILE.delete();
     }
 
     public HashMap<String, String> getAddedFiles() {

@@ -20,19 +20,19 @@ public class Blob {
         String id = sha1(contents);
 
         // put it in the blob
-        int hashcode = id.hashCode() % 256 + 1;
-        String hashFolder = Integer.toHexString(hashcode);
-
-
-        File path = join(Repository.BLOBS_FOLDER, hashFolder, id);
+        String hashFolder = id.substring(0,2);
+        File folder = join(Repository.BLOBS_FOLDER, hashFolder);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        File path = join(folder, id);
         writeContents(path, contents);
     }
 
     /** return file according to the id */
     public static File readBlob(String id) {
         // find the file according to id
-        int hashcode = id.hashCode() % 256 + 1;
-        String hashFolder = Integer.toHexString(hashcode);
+        String hashFolder = id.substring(0,2);
 
         File path = join(Repository.BLOBS_FOLDER, hashFolder, id);
         // return the file

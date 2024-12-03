@@ -3,10 +3,8 @@ package gitlet;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Date; // TODO: You'll likely use this in this class
-import java.util.List;
-
+import java.util.*;
+import java.text.SimpleDateFormat;
 import static gitlet.Utils.*;
 
 /** Represents a gitlet commit object.
@@ -68,7 +66,7 @@ public class Commit implements Serializable {
                 files.remove(key);
             }
         }
-        id = sha1(this);
+        id = sha1(serialize(this));
         // save the persistence
     }
 
@@ -77,19 +75,21 @@ public class Commit implements Serializable {
     /** this method will save the Commit object */
     public void saveCommit() {
         // calculate the hashcode of this instance
-        int hashcode = id.hashCode() % 256 + 1;
-        String hashFolder = Integer.toHexString(hashcode);
+        String hashFolder = id.substring(0,2);
         // save it into corresponding folder
         // TODO: setup folder?
-        File path = join(Repository.COMMIT_FOLDER, hashFolder, id);
+        File folder = join(Repository.COMMIT_FOLDER, hashFolder);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        File path = join(folder, id);
         writeObject(path, this);
     }
 
     /** this method will read the commit instance according to provided id */
     public static Commit readCommit(String id) {
         // calculate the hashcode of this instance
-        int hashcode = id.hashCode() % 256 + 1;
-        String hashFolder = Integer.toHexString(hashcode);
+        String hashFolder = id.substring(0,2);
         // TODO: what if file does not exist?
         File path = join(Repository.COMMIT_FOLDER, hashFolder, id);
         Commit c = readObject(path, Commit.class);
@@ -115,14 +115,39 @@ public class Commit implements Serializable {
     @Override
     public String toString() {
         if (!merged) {
-            return String.format("commit %s\nData: ", id) + timestamp.toString() + "\n" + message;
+            String result = "commit " + id
+                    + "\nDate: " + getFormatTime()
+                    + "\n" + message;
+            return result;
         } else {
             String result = "commit " + id
                     + "\nMerge: " + parent.substring(0,7) + " " + mergedParent.substring(0,7)
-                    + "\nDate: " + timestamp.toString()
+                    + "\nDate: " + getFormatTime()
                     + "\nMerged development into master";
             return result;
         }
     }
 
+    public String getFormatTime() {
+        SimpleDateFormat sdf =
+                new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy", Locale.ENGLISH);
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT-08:00"));
+        String formattedDate = sdf.format(timestamp);
+        formattedDate += " -0800";
+        return formattedDate;
+    }
+
+    public Map<String, String> getCommitFiles() {
+        return files;
+    }
+
+    /** this method returns the path of the given filename
+     * if there is one in the commit,
+     * otherwise return null
+     *
+     */
+    public File getFile(String filename) {
+        String id = files.get(filename);
+        return Blob.readBlob(id);
+    }
 }

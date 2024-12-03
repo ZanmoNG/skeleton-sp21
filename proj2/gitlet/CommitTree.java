@@ -8,7 +8,7 @@ import java.io.File;
 import static gitlet.Utils.*;
 
 public class CommitTree implements Serializable {
-    private static class node {
+    private static class node implements Serializable{
         String id;
         node parent;
         // TODO: what is a merged node? and what makes it merged?
@@ -33,17 +33,32 @@ public class CommitTree implements Serializable {
         }
     }
 
+    public static class branch implements Serializable {
+        private node p;
+        private String msg;
+
+        public branch(node theNode, String theMessage) {
+            p = theNode;
+            msg = theMessage;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+    }
+
     private node tailSentinel = null;
     /** master branch */
-    private node master;
+    private branch master;
     /** all other branches of a commit tree */
-    private LinkedList<node> branches;
+    private LinkedList<branch> branches;
 
 
     public CommitTree(Commit c) {
         // initialize the commitTree
         node p = new node(c.getId(), tailSentinel);
-        master = p;
+        master = new branch(p, "master");
         branches = new LinkedList<>();
     }
 
@@ -52,12 +67,23 @@ public class CommitTree implements Serializable {
      * */
     public void addMaster(Commit c) {
         // update tree
-        master = new node(c.getId(), master);
+        master.p = new node(c.getId(), master.p);
     }
 
     /** save tree obj */
     public void saveCommitTree() {
         writeObject(Repository.COMMIT_TREE_FILE, this);
+    }
+
+    private void addNewBranch(String name) {
+        branches.addLast(new branch(master.p, name));
+    }
+
+    public static void addBranch(String name) {
+        CommitTree ct;
+        ct = readObject(Repository.COMMIT_TREE_FILE, CommitTree.class);
+        ct.addNewBranch(name);
+        ct.saveCommitTree();
     }
 
     /** add new commit to commit tree master branch
@@ -81,13 +107,35 @@ public class CommitTree implements Serializable {
         ct.saveCommitTree();
     }
 
+    private void removeBranch(String name) {
+        if (master.msg.equals(name)) {
+            throw error("Cannot remove the current branch.");
+        }
+        boolean found = false;
+        for (branch b: branches) {
+            if (b.msg.equals(name)) {
+                branches.remove(b);
+                found = true;
+            }
+        }
+        if (!found) {
+            throw error("Cannot remove the current branch.");
+        }
+    }
+
+    public static void rmBranch(String name) {
+        CommitTree ct = readObject(Repository.COMMIT_TREE_FILE, CommitTree.class);
+        ct.removeBranch(name);
+        ct.saveCommitTree();
+    }
+
     public static CommitTree readCommitTree() {
         return readObject(Repository.COMMIT_TREE_FILE, CommitTree.class);
     }
 
     /** this method will log out all commits starting by head */
     public void display () {
-        node p = master;
+        node p = master.p;
         while (p != tailSentinel) {
             System.out.println("===");
             p.show();
@@ -116,4 +164,13 @@ public class CommitTree implements Serializable {
         }
     }
 
+    /** get the master branch */
+    public branch getMaster() {
+        return master;
+    }
+
+    /** get the branches */
+    public List<branch> getBranches() {
+        return branches;
+    }
 }
