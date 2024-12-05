@@ -48,7 +48,7 @@ public class Main {
             case "checkout":
                 int len = args.length;
                 if (len == 2) {
-                    checkoutHelper_3();
+                    checkoutHelper_3(args[1]);
                 } else if (len == 3) {
                     checkoutHelper_1(args[2]);
                 } else if (len == 4) {

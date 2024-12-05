@@ -152,48 +152,102 @@ public class MainHelper {
         }
         System.out.println(branchesString);
 
-        // === Staged Files ===
-            // read the StagingArea addedFiles
-        String stagedFilesString = "=== Staged Files ===\n";
-        StagingArea sa = StagingArea.readStagingArea();
-        Set<String> addedFileNames = sa.getAddedFiles().keySet();
-        for (String name: addedFileNames) {
-            stagedFilesString = stagedFilesString + name + "\n";
-        }
-        System.out.println(stagedFilesString);
-
-        // === Removed Files ===
-            // read the StagingArea removal
-        String removedFilesString = "=== Removed Files ===";
-        List<String> deletedFileNames = sa.getRemoval();
-        for (String name: deletedFileNames) {
-            removedFilesString = removedFilesString + name + "\n";
-        }
-        System.out.println(removedFilesString);
-
-        System.out.println("=== Modifications Not Staged For Commit ===\n"
-                            + "\n=== Untracked Files ===\n");
-
-        // TODO: extra credit
-        /*
-        // === Modifications Not Staged For Commit ===
-        String modificatioinsString = "=== Modifications Not Staged For Commit ===";
+        LinkedList<String> stagedFiles = new LinkedList<>();
+        LinkedList<String> removedFiles = new LinkedList<>();
         LinkedList<String> modifiedFiles = new LinkedList<>();
-            // read the current commit
-        Commit currentCommit = Head.readHeadAsCommit();
-        Map<String, String> currentCommitFiles = currentCommit.getCommitFiles();
-        for(String fileName: currentCommitFiles.keySet()) {
-            File path = join(Repository.CWD, fileName);
-            if (!path.exists()) {
-                // TODO: add to modifiedFiles
+        LinkedList<String> untrackedFiles = new LinkedList<>();
+
+        // read all files in current commit
+
+        // for each file:
+        //      same as CWD?
+        //      1. same
+        //      2. different
+        //          in staging area? same with the one in staging?
+        //      3. not found
+        Commit head = Head.readHeadAsCommit();
+        Map<String, String> currentCommitFiles = head.getCommitFiles();
+        StagingArea sa;
+        if (StagingArea.isEmpty()) {
+            sa = new StagingArea();
+        } else {
+            sa = StagingArea.readStagingArea();
+        }
+        for (String file: currentCommitFiles.keySet()) {
+            File CWDfile = join(Repository.CWD, file);
+            if (!CWDfile.exists()) {
+                if (sa.removalContainsFile(file)) {
+                    // case 1 removed
+                    removedFiles.addLast(file);
+                } else {
+                    // case 2 removed but not staged
+                    modifiedFiles.addLast(file + " (deleted)");
+                }
+            } else {
+                // this line will get the contents of the file in current commit
+                String commitContents = readContentsAsString(Blob.readBlob(currentCommitFiles.get(file)));
+                String CWDContents = readContentsAsString(CWDfile);
+                if (!commitContents.equals(CWDContents)) {
+                    // else same, nothing to do
+                    if (sa.stagedFilesContainsAndSame(CWDfile, file)) {
+                        // case 1 staged modification
+                        stagedFiles.addLast(file);
+                    } else {
+                        // case 2 modified and not staged
+                        modifiedFiles.addLast(file + " (modified)");
+                    }
+                }
             }
         }
-            // compare to StagingArea
 
+        // for all files that in CWD but not in current commit
+        // case 1: untracked
+        // case 2: staged
+        // case 3: staged but modified then
 
+        for (String filename: plainFilenamesIn(Repository.CWD)) {
+            // in CWD but not in commit
+            if (!head.contains(filename)) {
+                if (!sa.getAddedFiles().containsKey(filename)) {
+                    // case 1: not staged
+                    untrackedFiles.addLast(filename);
+                } else if (sa.stagedFilesContainsAndSame(join(Repository.CWD, filename), filename)){
+                    // case 2: staged
+                    stagedFiles.addLast(filename);
+                } else {
+                    // case 3: staged but not same
+                    modifiedFiles.addLast(filename + " (modified)");
+                }
+            }
+        }
 
-        // === Untracked Files ===
-        */
+        // staged, but deleted in CWD
+        for (String file: sa.getAddedFiles().keySet()) {
+            File CWDFile = join(Repository.CWD, file);
+            if (!CWDFile.exists()) {
+                modifiedFiles.addLast(file + " (deleted)");
+            }
+        }
+        Collections.sort(stagedFiles);
+        Collections.sort(removedFiles);
+        Collections.sort(modifiedFiles);
+        Collections.sort(untrackedFiles);
+
+        System.out.println("=== Staged Files ===");
+        printlnHelper(stagedFiles);
+        System.out.println("=== Removed Files ===");
+        printlnHelper(removedFiles);
+        System.out.println("=== Modifications Not Staged For Commit ===");
+        printlnHelper(modifiedFiles);
+        System.out.println("=== Untracked Files ===");
+        printlnHelper(untrackedFiles);
+    }
+
+    private static void printlnHelper(List<String> ls) {
+        for (String name: ls) {
+            System.out.println(name);
+        }
+        System.out.println();
     }
 
     /** decide which checkout method to choose from */
@@ -218,6 +272,7 @@ public class MainHelper {
 
     /** java gitlet.Main checkout [commit id] -- [file name] */
     public static void checkoutHelper_2(String id, String filename) {
+        // TODO: simpler id
         // read the commit
         Commit c = Commit.readCommit(id);
         // read the file
@@ -232,16 +287,33 @@ public class MainHelper {
     }
 
     /** java gitlet.Main checkout [branch name] */
-    public static void checkoutHelper_3() {
+    public static void checkoutHelper_3(String branchName) {
         // read the branch
+        // TODO: No need to checkout the current branch.
+        // TODO: There is an untracked file in the way
+
+        String id = CommitTree.getBranch(branchName);
+        if (id == null) {
+            throw error("No such branch exists.");
+        }
 
         // read the file
+        Commit c = Commit.readCommit(id);
+        Map<String, String> files = c.getCommitFiles();
 
         // add to CWD
+        for (String name: files.keySet()) {
+            String contents = readContentsAsString(Blob.readBlob(files.get(name)));
+            File f = join(Repository.CWD, name);
+            writeContents(f, contents);
+        }
 
         // change Head
+        Head.updateHead(id);
+        CommitTree.changeMaster(branchName);
 
         // clear staging area
+        StagingArea.clearArea();
     }
 
     /** java gitlet.Main branch [branch name]

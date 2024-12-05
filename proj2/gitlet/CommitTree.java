@@ -76,6 +76,11 @@ public class CommitTree implements Serializable {
     }
 
     private void addNewBranch(String name) {
+        for (branch b: branches) {
+            if (b.msg.equals(name)) {
+                throw error("A branch with that name does not exist.");
+            }
+        }
         branches.addLast(new branch(master.p, name));
     }
 
@@ -172,5 +177,37 @@ public class CommitTree implements Serializable {
     /** get the branches */
     public List<branch> getBranches() {
         return branches;
+    }
+
+    /** find the id of the given branch name, if not found return null */
+    private String getBranch_(String name) {
+        for (branch b: branches) {
+            if (b.msg.equals(name)) {
+                return b.p.id;
+            }
+        }
+        return null;
+    }
+
+    /** interface */
+    public static String getBranch(String branchName) {
+        CommitTree ct = CommitTree.readCommitTree();
+        return ct.getBranch_(branchName);
+    }
+
+    private void changeMaster_(String branchName) {
+        branches.addLast(new branch(master.p, master.msg));
+        for (branch b: branches) {
+            if (b.msg.equals(branchName)) {
+                master = b;
+                branches.remove(b);
+            }
+        }
+    }
+
+    public static void changeMaster(String branchName) {
+        CommitTree ct = CommitTree.readCommitTree();
+        ct.changeMaster_(branchName);
+        ct.saveCommitTree();
     }
 }

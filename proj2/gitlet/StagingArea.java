@@ -65,7 +65,28 @@ public class StagingArea implements Serializable {
         return !Repository.STAGING_FILE.exists();
     }
 
+    public boolean removalContainsFile(String filename) {
+        if (removal.contains(filename)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    /** this method return ture only if addedFiles contains same as File f */
+    public boolean stagedFilesContainsAndSame(File f, String name) {
+        if (!addedFiles.containsKey(name)) {
+            return false;
+        } else {
+            String fContents = readContentsAsString(f);
+            String stagedContents = readContentsAsString(Blob.readBlob(addedFiles.get(name)));
+            if (fContents.equals(stagedContents)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
     // TODO more methods?
     // maybe isEmpty
 }

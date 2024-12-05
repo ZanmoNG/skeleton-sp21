@@ -35,7 +35,7 @@ public class Repository {
     /** The commits directory */
     public static final File COMMIT_FOLDER = join(OBJ_FOLDER, "commits");
     /** The head directory */
-    public static final File HEAD_FILE = join(CWD, "head");
+    public static final File HEAD_FILE = join(GITLET_DIR, "head");
     /** The commit tree file */
     public static final File COMMIT_TREE_FILE = join(OBJ_FOLDER, "commitTree");
 
