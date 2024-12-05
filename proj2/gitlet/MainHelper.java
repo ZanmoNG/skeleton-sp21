@@ -97,7 +97,7 @@ public class MainHelper {
         }
 
         if (saContains) {
-            saMap.remove(filename);
+            sa.rmStagedFiles(filename);
         }
         if (headContains) {
             sa.setRemoval(filename);
@@ -334,12 +334,24 @@ public class MainHelper {
     }
 
     /** java gitlet.Main reset [commit id] */
-    public static void resetHelper() {
+    public static void resetHelper(String id) {
+        // TODO: failure case
         // remove all files in CWD
-
+        List<String> CWDFiles = plainFilenamesIn(Repository.CWD);
+        for (String file: CWDFiles) {
+            File path = join(Repository.CWD, file);
+            path.delete();
+        }
         // read the commit and cp all the files into CWD
-
+        Commit c = Commit.readCommit(id);
+        for (String filename: c.getCommitFiles().keySet()) {
+            File CWDPath = join(Repository.CWD, filename);
+            File blobFile = Blob.readBlob(c.getCommitFiles().get(filename));
+            String contents = readContentsAsString(blobFile);
+            writeContents(CWDPath, contents);
+        }
         // move the head
+
 
         /*TODO: maybe we can delete files and move head, and just checkout then*/
     }

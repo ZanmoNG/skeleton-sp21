@@ -25,11 +25,7 @@ public class CommitTree implements Serializable {
 
         public void show() {
             Commit c = Commit.readCommit(id);
-            if (!merged) {
-                System.out.println(c.toString());
-            } else {
-
-            }
+            System.out.println(c.toString());
         }
     }
 
@@ -151,20 +147,17 @@ public class CommitTree implements Serializable {
 
     /** this method will log out every commit in the commits folder */
     public static void displayAll() {
-        List<String> folders = plainFilenamesIn(Repository.COMMIT_FOLDER);
-        List<String> files;
-        if (folders == null) {
-            throw new GitletException("sth went wrong in commitTree");
-        }
-        for (String folder: folders) {
-            File path = join(Repository.COMMIT_FOLDER, folder);
-            files = plainFilenamesIn(path);
-            for (String file: files) {
-                File filePath = join(path, file);
-                Commit c = readObject(filePath, Commit.class);
-                System.out.println("===");
-                System.out.println(c);
-                System.out.println();
+        for(int i = 1; i <= 256; i++) {
+            File folder = join(Repository.COMMIT_FOLDER, Integer.toHexString(i));
+            if (folder.exists()) {
+                List<String> files = plainFilenamesIn(folder);
+                for (String file : files) {
+                    File filePath = join(folder, file);
+                    Commit c = readObject(filePath, Commit.class);
+                    System.out.println("===");
+                    System.out.println(c);
+                    System.out.println();
+                }
             }
         }
     }
@@ -208,6 +201,26 @@ public class CommitTree implements Serializable {
     public static void changeMaster(String branchName) {
         CommitTree ct = CommitTree.readCommitTree();
         ct.changeMaster_(branchName);
+        ct.saveCommitTree();
+    }
+
+    public void moveHead_(String id) {
+        // TODO: if merged -- recursive or list for merged parent
+        Commit c = Commit.readCommit(id);
+        node p = master.p;
+        while(p != tailSentinel && p.id != id) {
+            p = p.parent;
+        }
+        if (p != tailSentinel) {
+            master = new branch(p, master.msg);
+        } else {
+            throw error("No commit with that id exists.");
+        }
+    }
+
+    public static void moveHead(String id) {
+        CommitTree ct = CommitTree.readCommitTree();
+        ct.moveHead_(id);
         ct.saveCommitTree();
     }
 }

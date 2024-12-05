@@ -1,0 +1,24 @@
+I definitions.inc
+> init
+<<<
+> find "initial commit"
+${ARBLINE}
+<<<*
++ wug.txt wug.txt
+> add wug.txt
+<<<
+> commit "xxx"
+<<<
++ wug2.txt wug.txt
+> add wug2.txt
+<<<
+> commit "xxx"
+<<<
++ wug3.txt wug.txt
+> add wug3.txt
+<<<
+> commit "xxx"
+<<<
+> find "xxx"
+${ARBLINES}
+<<<*

@@ -57,6 +57,16 @@ public class Main {
                 break;
             case "branch":
                 branchHelper(args[1]);
+                break;
+            case "rm-branch":
+                rmBranchHelper(args[1]);
+                break;
+            case "reset":
+                resetHelper(args[1]);
+                break;
+            case "merge":
+                mergeHelper();
+                break;
             /* If a user inputs a command that doesn’t exist,
             print the message and exit. */
             default:

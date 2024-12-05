@@ -1,0 +1,19 @@
+I definitions.inc
+> init
+<<<
+> branch newBranch
+<<<
+> status
+=== Branches ===
+\*master
+newBranch
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*

@@ -87,6 +87,12 @@ public class StagingArea implements Serializable {
             }
         }
     }
+
+    /** this method delete the file in the map, not staged removal */
+    public void rmStagedFiles(String name) {
+        addedFiles.remove(name);
+        writeObject(Repository.STAGING_FILE, this);
+    }
     // TODO more methods?
     // maybe isEmpty
 }

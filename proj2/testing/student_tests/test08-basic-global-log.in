@@ -1,0 +1,24 @@
+I definitions.inc
+> init
+<<<
+> global-log
+===
+${COMMIT_HEAD}
+${ARBLINE}
+
+<<<*
++ wug.txt wug.txt
+> add wug.txt
+<<<
+> commit "another Commit"
+<<<
+> global-log
+===
+${COMMIT_HEAD}
+${ARBLINE}
+
+===
+${COMMIT_HEAD}
+${ARBLINE}
+
+<<<*
