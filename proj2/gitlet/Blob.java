@@ -38,8 +38,5 @@ public class Blob {
         // return the file
 
         return path;
-        // TODO: return path or contents?
     }
-
-    // TODO: more methods?
 }

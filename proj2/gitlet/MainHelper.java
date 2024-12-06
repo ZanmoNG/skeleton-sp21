@@ -351,7 +351,9 @@ public class MainHelper {
             writeContents(CWDPath, contents);
         }
         // move the head
-
+        Head.updateHead(id);
+        CommitTree.moveHead(id);
+        StagingArea.clearArea();
 
         /*TODO: maybe we can delete files and move head, and just checkout then*/
     }

@@ -204,20 +204,35 @@ public class CommitTree implements Serializable {
         ct.saveCommitTree();
     }
 
+    /** this method move the head of master to the node of id */
     public void moveHead_(String id) {
-        // TODO: if merged -- recursive or list for merged parent
-        Commit c = Commit.readCommit(id);
-        node p = master.p;
-        while(p != tailSentinel && p.id != id) {
-            p = p.parent;
+        boolean found = false;
+        LinkedList<node> ls = new LinkedList<>();
+        ls.addLast(master.p);
+        node p = null;
+        while(!ls.isEmpty()) {
+            p = ls.removeFirst();
+            if (p == tailSentinel) {
+
+            } else if (!p.merged) {
+                ls.addLast(p.parent);
+            } else if (p.merged) {
+                ls.addLast(p.parent);
+                ls.addLast(p.mergedParent);
+            }
+            if (p.id.equals(id)) {
+                found = true;
+                break;
+            }
         }
-        if (p != tailSentinel) {
-            master = new branch(p, master.msg);
-        } else {
+        if (!found) {
             throw error("No commit with that id exists.");
+        } else {
+            master = new branch(p, master.msg);
         }
     }
 
+    /** this method is the class interface of move head */
     public static void moveHead(String id) {
         CommitTree ct = CommitTree.readCommitTree();
         ct.moveHead_(id);
