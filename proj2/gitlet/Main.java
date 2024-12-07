@@ -1,6 +1,7 @@
 package gitlet;
 
 import static gitlet.MainHelper.*;
+import static gitlet.Utils.*;
 
 /** Driver class for Gitlet, a subset of the Git version-control system.
  *  @author Zanmo
@@ -28,6 +29,10 @@ public class Main {
                 addHelper(args[1]);
                 break;
             case "commit":
+                if (args.length == 1 || args[1].isEmpty()) {
+                    System.out.println("Please enter a commit message.");
+                    System.exit(0);
+                }
                 commitHelper(args[1]);
                 break;
             case "rm":

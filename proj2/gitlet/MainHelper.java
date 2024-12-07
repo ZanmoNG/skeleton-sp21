@@ -74,6 +74,10 @@ public class MainHelper {
 
     /** java gitlet.Main commit [message] */
     public static void commitHelper(String msg) {
+        if (StagingArea.isEmpty()) {
+            System.out.println("No changes added to the commit.");
+            System.exit(0);
+        }
         Commit cm = new Commit(msg);
         // persistence
         cm.saveCommit();
@@ -87,7 +91,12 @@ public class MainHelper {
     public static void rmHelper(String filename) {
         // failure case: no need to rm
         Commit head = Head.readHeadAsCommit();
-        StagingArea sa = StagingArea.readStagingArea();
+        StagingArea sa = null;
+        if (StagingArea.isEmpty()) {
+            sa = new StagingArea();
+        } else {
+            sa = StagingArea.readStagingArea();
+        }
         HashMap<String, String> saMap= sa.getAddedFiles();
         boolean headContains = head.contains(filename);
         boolean saContains = saMap.containsKey(filename);

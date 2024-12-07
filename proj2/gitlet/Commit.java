@@ -77,13 +77,13 @@ public class Commit implements Serializable {
         // calculate the hashcode of this instance
         String hashFolder = id.substring(0,2);
         // save it into corresponding folder
-        // TODO: setup folder?
         File folder = join(Repository.COMMIT_FOLDER, hashFolder);
         if (!folder.exists()) {
             folder.mkdir();
         }
         File path = join(folder, id);
         writeObject(path, this);
+        StagingArea.clearArea();
     }
 
     /** this method will read the commit instance according to provided id */
