@@ -244,8 +244,8 @@ public class CommitTree implements Serializable {
     }
 
     private node findLatestCommonAncestor_(node n1, node n2) {
-        List<node> ls1 = new ArrayList<node>();
-        List<node> ls2 = new ArrayList<node>();
+        LinkedList<node> ls1 = new LinkedList<node>();
+        LinkedList<node> ls2 = new LinkedList<node>();
         while (n1 != tailSentinel) {
             if (!n1.merged) {
                 ls1.addFirst(n1);
