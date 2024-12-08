@@ -57,7 +57,12 @@ public class StagingArea implements Serializable {
 
     /** this method reads the staging area and returns the map of file to id */
     public static StagingArea readStagingArea() {
-        StagingArea r = readObject(Repository.STAGING_FILE, StagingArea.class);
+        StagingArea r = null;
+        if (!StagingArea.isEmpty()) {
+            r = readObject(Repository.STAGING_FILE, StagingArea.class);
+        } else {
+            r = new StagingArea();
+        }
         return r;
     }
 

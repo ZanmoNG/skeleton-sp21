@@ -1,0 +1,18 @@
+I definitions.inc
+> init
+<<<
++ f.txt wug.txt
++ g.txt notwug.txt
+> add g.txt
+<<<
+> add f.txt
+<<<
+> commit "two files"
+<<<
+> rm f.txt
+<<<
+> commit "Remove one file"
+<<<
+> find "Add another file"
+Found no commit with that message.
+<<<

@@ -92,6 +92,10 @@ public class Commit implements Serializable {
         String hashFolder = id.substring(0,2);
         // TODO: what if file does not exist?
         File path = join(Repository.COMMIT_FOLDER, hashFolder, id);
+        if (!path.exists()) {
+            System.out.println("No commit with that id exists.");
+            System.exit(0);
+        }
         Commit c = readObject(path, Commit.class);
         return c;
     }
@@ -148,6 +152,10 @@ public class Commit implements Serializable {
      */
     public File getFile(String filename) {
         String id = files.get(filename);
+        if (id == null) {
+            System.out.println("File does not exist in that commit.");
+            System.exit(0);
+        }
         return Blob.readBlob(id);
     }
 }

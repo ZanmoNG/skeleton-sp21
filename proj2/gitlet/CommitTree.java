@@ -1,6 +1,7 @@
 package gitlet;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.io.File;
@@ -174,6 +175,9 @@ public class CommitTree implements Serializable {
 
     /** find the id of the given branch name, if not found return null */
     private String getBranch_(String name) {
+        if (name.equals(master.msg)) {
+            return master.p.id;
+        }
         for (branch b: branches) {
             if (b.msg.equals(name)) {
                 return b.p.id;
@@ -237,5 +241,66 @@ public class CommitTree implements Serializable {
         CommitTree ct = CommitTree.readCommitTree();
         ct.moveHead_(id);
         ct.saveCommitTree();
+    }
+
+    private node findLatestCommonAncestor_(node n1, node n2) {
+        List<node> ls1 = new ArrayList<node>();
+        List<node> ls2 = new ArrayList<node>();
+        while (n1 != tailSentinel) {
+            if (!n1.merged) {
+                ls1.addFirst(n1);
+                n1 = n1.parent;
+            } else {
+                ls1.addFirst(n1);
+                n1 = findLatestCommonAncestor_(n1.parent, n1.mergedParent);
+            }
+        }
+        while (n2 != tailSentinel) {
+            if (!n2.merged) {
+                ls2.addFirst(n2);
+                n2 = n2.parent;
+            } else {
+                ls2.addFirst(n2);
+                n2 = findLatestCommonAncestor_(n2.parent, n2.mergedParent);
+            }
+        }
+        ls1.retainAll(ls2);
+        return ls1.getLast();
+    }
+
+    /** this method will find the LCA of current commit and given branch
+     *  and return its id
+     */
+    public static String findLatestCommonAncestor(String branchName) {
+        CommitTree ct = CommitTree.readCommitTree();
+        node n1 = ct.master.p;
+        node n2 = ct.getAimedBranch(branchName);
+        if (n2 == null) {
+            System.out.println("A branch with that name does not exist.");
+            System.exit(0);
+        }
+        return ct.findLatestCommonAncestor_(n1, n2).id;
+    }
+
+    /** return the branchName's node, if not found return null */
+    private node getAimedBranch (String branchName) {
+        for (branch b: branches) {
+            if (b.msg.equals(branchName)) {
+                return b.p;
+            }
+        }
+        return null;
+    }
+
+    public static String getAimedBranchId (String branchName) {
+        CommitTree ct = CommitTree.readCommitTree();
+        for (branch b: ct.branches) {
+            if (b.msg.equals(branchName)) {
+                return b.p.id;
+            }
+        }
+        System.out.println("A branch with that name does not exist.");
+        System.exit(0);
+        return null;
     }
 }

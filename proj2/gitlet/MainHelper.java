@@ -65,7 +65,7 @@ public class MainHelper {
         // save to Blob
         Blob.saveBlob(file);
         // save to stagingArea
-        StagingArea sa = new StagingArea();
+        StagingArea sa = StagingArea.readStagingArea();
         sa.saveStagingArea(file, filename);
 
         // correct? maybe if no changed we can cache it
@@ -115,6 +115,7 @@ public class MainHelper {
                 now.delete();
             }
         }
+        ;
     }
 
     /** java gitlet.Main log */
@@ -131,6 +132,7 @@ public class MainHelper {
     /** java gitlet.Main find [commit message] */
     public static void findHelper(String msg) {
         // read through all folders
+        boolean found = false;
         for (int i = 1; i <= 256; i++) {
             String folderId = Integer.toHexString(i);
             File folder = join(Repository.COMMIT_FOLDER, folderId);
@@ -140,10 +142,15 @@ public class MainHelper {
                 for (String file: fileList) {
                     Commit c = Commit.readCommit(file);
                     if (c.getMessage().equals(msg)) {
+                        found = true;
                         System.out.println(c.getId());
                     }
                 }
             }
+        }
+        if (!found) {
+            System.out.println("Found no commit with that message.");
+            System.exit(0);
         }
     }
 
@@ -287,7 +294,8 @@ public class MainHelper {
         // read the file
         File file = c.getFile(filename);
         if (file == null) {
-            throw error("File does not exist in that commit.");
+            System.out.println("File does not exist in that commit.");
+            System.exit(0);
         }
         // rewrite the file
         String contents = readContentsAsString(file);
@@ -297,18 +305,43 @@ public class MainHelper {
 
     /** java gitlet.Main checkout [branch name] */
     public static void checkoutHelper_3(String branchName) {
-        // read the branch
-        // TODO: No need to checkout the current branch.
-        // TODO: There is an untracked file in the way
+        Commit head = Head.readHeadAsCommit();
+        StagingArea sa;
+        if (StagingArea.isEmpty()) {
+            sa = new StagingArea();
+        } else {
+            sa = StagingArea.readStagingArea();
+        }
+        for (String filename: plainFilenamesIn(Repository.CWD)) {
+            // in CWD but not in commit
+            if (!head.contains(filename)) {
+                if (!sa.getAddedFiles().containsKey(filename)) {
+                    System.out.println("There is an untracked file in the way; delete it, or add and commit it first.");
+                    System.exit(0);
+                }
+            }
+        }
 
+        // read the branch
         String id = CommitTree.getBranch(branchName);
         if (id == null) {
-            throw error("No such branch exists.");
+            System.out.println("No such branch exists.");
+            System.exit(0);
+        } else if (id.equals(Head.readHeadAsCommit().getId())) {
+            System.out.println("No need to checkout the current branch.");
         }
 
         // read the file
         Commit c = Commit.readCommit(id);
         Map<String, String> files = c.getCommitFiles();
+
+        // delete all files in CWD
+        List<String> CWDFiles = plainFilenamesIn(Repository.CWD);
+        for (String filename: CWDFiles) {
+            File path = join(Repository.CWD, filename);
+            path.delete();
+
+        }
 
         // add to CWD
         for (String name: files.keySet()) {
@@ -370,7 +403,208 @@ public class MainHelper {
     /** java gitlet.Main merge [branch name]
      *  Merges files from the given branch into the current branch.
      * */
-    public static void mergeHelper() {
+    public static void mergeHelper(String branchName) {
+        // TODO: untracked files
+
+        // read the branch files
+        String branchId = CommitTree.getAimedBranchId(branchName);
+        Map<String, String> branchFiles = Commit.readCommit(branchId).getCommitFiles();
+        Set<String> branchFilesName = branchFiles.keySet();
+
+        // find the latest common ancestor， read files
+        String LCAId = CommitTree.findLatestCommonAncestor(branchName);
+        Map<String, String> LCAFiles = Commit.readCommit(LCAId).getCommitFiles();
+        Set<String> LCAFilesName = LCAFiles.keySet();
+
+        // read current files
+        String headId = Head.readHeadAsCommit().getId();
+        Map<String, String> headFiles = Head.readHeadAsCommit().getCommitFiles();
+        Set<String> headFilesName = headFiles.keySet();
+
+        // is there any untracked files?
+        List<String> CWDFiles = plainFilenamesIn(Repository.CWD);
+        for (String file: CWDFiles) {
+            if (!headFilesName.contains(file)) {
+                System.out.println("There is an untracked file in the way; delete it, or add and commit it first.");
+                System.exit(0);
+            }
+        }
+
+        if (!StagingArea.isEmpty()) {
+            System.out.println("You have uncommitted changes.");
+            System.exit(0);
+        }
+        StagingArea sa = StagingArea.readStagingArea();
+
+        CommitTree ct = CommitTree.readCommitTree();
+        if (branchName.equals(ct.getMaster().getMsg())) {
+            System.out.println("Cannot merge a branch with itself.");
+        }
+        // cases:
+        //      Given branch is an ancestor of the current branch.
         //
+
+        boolean conflict = false;
+
+        for (String fileName: LCAFilesName) {
+            File CWDPath = join(Repository.CWD, fileName);
+
+            boolean modifiedInCurrent = false;
+            boolean modifiedInBranch = false;
+            boolean deletedInCurrent = false;
+            boolean deletedInBranch = false;
+
+            String branchContents = "";
+            String currentContents = "";
+
+            File LCAPath = Blob.readBlob(LCAFiles.get(fileName));
+            if (!branchFilesName.contains(fileName)) {
+                deletedInBranch = true;
+            } else {
+                File branchPath = Blob.readBlob(branchFiles.get(fileName));
+                branchContents = readContentsAsString(branchPath);
+                if (!LCAPath.equals(branchPath)) {
+                    modifiedInBranch = true;
+                }
+            }
+            if (!headFilesName.contains(fileName)) {
+                deletedInCurrent = true;
+            } else {
+                File headPath = Blob.readBlob(headFiles.get(fileName));
+                currentContents = readContentsAsString(headPath);
+                if (!LCAPath.equals(headPath)) {
+                    modifiedInCurrent = true;
+                }
+            }
+
+            if (!modifiedInCurrent && !modifiedInBranch
+                && !deletedInBranch && !deletedInCurrent) {
+                continue;
+            } else if (modifiedInBranch && !modifiedInCurrent && !deletedInCurrent) {
+                // case 1 in spec
+                writeContents(CWDPath, branchContents);
+                sa.saveStagingArea(CWDPath, fileName);
+            } else if (modifiedInCurrent && !modifiedInBranch && !deletedInBranch) {
+                // case 2 in spec
+                writeContents(CWDPath, currentContents);
+                sa.saveStagingArea(CWDPath, fileName);
+            } else if (modifiedInBranch && modifiedInCurrent) {
+                if (currentContents.equals(branchContents)) {
+                    // same, case3A in spec
+                    writeContents(CWDPath, currentContents);
+                    sa.saveStagingArea(CWDPath, fileName);
+                } else {
+                    // different, case 8A
+                    String result = "<<<<<<< HEAD\n" +
+                            currentContents +
+                            "=======\n" +
+                            branchContents +
+                            ">>>>>>>\n";
+                    writeContents(CWDPath, result);
+                    conflict = true;
+                }
+            } else if (!modifiedInCurrent && deletedInBranch) {
+                // case 6
+                CWDPath.delete();
+                sa.setRemoval(fileName);
+            } else if (!modifiedInBranch && deletedInCurrent) {
+                // case 7
+                if (CWDPath.exists()) {
+                    CWDPath.delete();
+                }
+            } else if (deletedInBranch && deletedInCurrent) {
+                // case 3B
+                sa.setRemoval(fileName);
+            } else if (modifiedInBranch && deletedInCurrent) {
+                String result = "<<<<<<< HEAD\n" +
+                        currentContents +
+                        "=======\n" +
+                        branchContents +
+                        ">>>>>>>\n";
+                writeContents(CWDPath, result);
+                conflict = true;
+            } else if (modifiedInCurrent && deletedInBranch) {
+                String result = "<<<<<<< HEAD\n" +
+                        currentContents +
+                        "=======\n" +
+                        branchContents +
+                        ">>>>>>>\n";
+                writeContents(CWDPath, result);
+                conflict = true;
+            }
+        }
+        for (String fileName: headFilesName) {
+            File CWDPath = join(Repository.CWD, fileName);
+            File headPath = Blob.readBlob(headFiles.get(fileName));
+            String currentContents = readContentsAsString(headPath);
+            if (!LCAFilesName.contains(fileName)) {
+                if (!branchFilesName.contains(fileName)) {
+                    writeContents(CWDPath, currentContents);
+                    sa.saveStagingArea(CWDPath, fileName);
+                } else {
+                    File branchPath = Blob.readBlob(branchFiles.get(fileName));
+                    String branchContents = readContentsAsString(branchPath);
+                    if (branchContents.equals(currentContents)) {
+                        writeContents(CWDPath, currentContents);
+                        sa.saveStagingArea(CWDPath, fileName);
+                    } else {
+                        String result = "<<<<<<< HEAD\n" +
+                                currentContents +
+                                "=======\n" +
+                                branchContents +
+                                ">>>>>>>\n";
+                        writeContents(CWDPath, result);
+                        conflict = true;
+                    }
+                }
+            }
+        }
+        for (String fileName: branchFilesName) {
+            File CWDPath = join(Repository.CWD, fileName);
+            File branchPath = Blob.readBlob(branchFiles.get(fileName));
+            String branchContents = readContentsAsString(branchPath);
+            if (!LCAFilesName.contains(fileName)) {
+                if (!headFilesName.contains(fileName)) {
+                    writeContents(CWDPath, branchContents);
+                    sa.saveStagingArea(CWDPath, fileName);
+                } else {
+                    File headPath = Blob.readBlob(headFiles.get(fileName));
+                    String currentContents = readContentsAsString(headPath);
+                    if (branchContents.equals(currentContents)) {
+                        writeContents(CWDPath, currentContents);
+                        sa.saveStagingArea(CWDPath, fileName);
+                    } else {
+                        String result = "<<<<<<< HEAD\n" +
+                                currentContents +
+                                "=======\n" +
+                                branchContents +
+                                ">>>>>>>\n";
+                        writeContents(CWDPath, result);
+                        conflict = true;
+                    }
+                }
+            }
+        }
+        String msg = "Merged " + branchName + " into " + ct.getMaster().getMsg() + ".";
+
+        Commit c = new Commit(msg);
+        c.saveCommit();
+        CommitTree.addCommitTree(c);
+        StagingArea.clearArea();
+        Head.updateHead(c.getId());
+        if (conflict) {
+            System.out.println("Encountered a merge conflict.");
+        }
+    }
+
+    /** this method accepts 2 ids and return whether they are modified */
+    private static boolean isModified(String id1, String id2) {
+        File f1 = Blob.readBlob(id1);
+        File f2 = Blob.readBlob(id2);
+        if (f1.equals(f2)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

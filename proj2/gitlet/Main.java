@@ -57,6 +57,10 @@ public class Main {
                 } else if (len == 3) {
                     checkoutHelper_1(args[2]);
                 } else if (len == 4) {
+                    if (!args[2].equals("--")) {
+                        System.out.println("Incorrect operands.");
+                        System.exit(0);
+                    }
                     checkoutHelper_2(args[1], args[3]);
                 }
                 break;
@@ -70,7 +74,7 @@ public class Main {
                 resetHelper(args[1]);
                 break;
             case "merge":
-                mergeHelper();
+                mergeHelper(args[1]);
                 break;
             /* If a user inputs a command that doesn’t exist,
             print the message and exit. */
