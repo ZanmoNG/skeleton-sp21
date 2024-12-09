@@ -1,6 +1,7 @@
 package gitlet;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.*;
 
 import static gitlet.Utils.*;
@@ -67,7 +68,6 @@ public class MainHelper {
         // save to stagingArea
         StagingArea sa = StagingArea.readStagingArea();
         sa.saveStagingArea(file, filename);
-
         // correct? maybe if no changed we can cache it
 
     }
@@ -286,9 +286,34 @@ public class MainHelper {
         writeContents(file, contents);
     }
 
+    private static String shortUid(String shortVer) {
+        for(int i = 1; i <= 256; i++) {
+            String hex2Id = Integer.toHexString(i);
+            if (hex2Id.length() == 1) {
+                hex2Id = "0" + hex2Id;
+            }
+            File folder = join(Repository.COMMIT_FOLDER, hex2Id);
+            if (folder.exists()) {
+                List<String> files = plainFilenamesIn(folder);
+                for (String file : files) {
+                    File filePath = join(folder, file);
+                    Commit c = readObject(filePath, Commit.class);
+                    if (c.getId().startsWith(shortVer)) {
+                        return c.getId();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     /** java gitlet.Main checkout [commit id] -- [file name] */
     public static void checkoutHelper_2(String id, String filename) {
-        // TODO: simpler id
+        id = shortUid(id);
+        if (id == null) {
+            System.out.println("No commit with that id exists.");
+            System.exit(0);
+        }
         // read the commit
         Commit c = Commit.readCommit(id);
         // read the file
@@ -327,7 +352,7 @@ public class MainHelper {
         if (id == null) {
             System.out.println("No such branch exists.");
             System.exit(0);
-        } else if (id.equals(Head.readHeadAsCommit().getId())) {
+        } else if (CommitTree.noNeedToCheckout(branchName)) {
             System.out.println("No need to checkout the current branch.");
         }
 
@@ -377,7 +402,18 @@ public class MainHelper {
 
     /** java gitlet.Main reset [commit id] */
     public static void resetHelper(String id) {
-        // TODO: failure case
+        Commit head = Head.readHeadAsCommit();
+        StagingArea sa = StagingArea.readStagingArea();
+        for (String filename: plainFilenamesIn(Repository.CWD)) {
+            // in CWD but not in commit
+            if (!head.contains(filename)) {
+                if (!sa.getAddedFiles().containsKey(filename)) {
+                    System.out.println("There is an untracked file in the way; delete it, or add and commit it first.");
+                    System.exit(0);
+                }
+            }
+        }
+
         // remove all files in CWD
         List<String> CWDFiles = plainFilenamesIn(Repository.CWD);
         for (String file: CWDFiles) {
@@ -404,8 +440,11 @@ public class MainHelper {
      *  Merges files from the given branch into the current branch.
      * */
     public static void mergeHelper(String branchName) {
-        // TODO: untracked files
-
+        CommitTree ct = CommitTree.readCommitTree();
+        if (branchName.equals(ct.getMaster().getMsg())) {
+            System.out.println("Cannot merge a branch with itself.");
+            System.exit(0);
+        }
         // read the branch files
         String branchId = CommitTree.getAimedBranchId(branchName);
         Map<String, String> branchFiles = Commit.readCommit(branchId).getCommitFiles();
@@ -416,10 +455,27 @@ public class MainHelper {
         Map<String, String> LCAFiles = Commit.readCommit(LCAId).getCommitFiles();
         Set<String> LCAFilesName = LCAFiles.keySet();
 
+        if (LCAId.equals(branchId)) {
+            System.out.println("Given branch is an ancestor of the current branch.");
+            System.exit(0);
+        }
+
         // read current files
         String headId = Head.readHeadAsCommit().getId();
         Map<String, String> headFiles = Head.readHeadAsCommit().getCommitFiles();
         Set<String> headFilesName = headFiles.keySet();
+
+        if (headId.equals(LCAId)) {
+            checkoutHelper_3(branchName);
+            System.out.println("Current branch fast-forwarded.");
+            System.exit(0);
+        }
+
+        if (!StagingArea.isEmpty()) {
+            System.out.println("You have uncommitted changes.");
+            System.exit(0);
+        }
+        StagingArea sa = StagingArea.readStagingArea();
 
         // is there any untracked files?
         List<String> CWDFiles = plainFilenamesIn(Repository.CWD);
@@ -430,16 +486,6 @@ public class MainHelper {
             }
         }
 
-        if (!StagingArea.isEmpty()) {
-            System.out.println("You have uncommitted changes.");
-            System.exit(0);
-        }
-        StagingArea sa = StagingArea.readStagingArea();
-
-        CommitTree ct = CommitTree.readCommitTree();
-        if (branchName.equals(ct.getMaster().getMsg())) {
-            System.out.println("Cannot merge a branch with itself.");
-        }
         // cases:
         //      Given branch is an ancestor of the current branch.
         //
@@ -502,6 +548,8 @@ public class MainHelper {
                             ">>>>>>>\n";
                     writeContents(CWDPath, result);
                     conflict = true;
+                    addHelper(fileName);
+                    sa = StagingArea.readStagingArea();
                 }
             } else if (!modifiedInCurrent && deletedInBranch) {
                 // case 6
@@ -523,6 +571,8 @@ public class MainHelper {
                         ">>>>>>>\n";
                 writeContents(CWDPath, result);
                 conflict = true;
+                addHelper(fileName);
+                sa = StagingArea.readStagingArea();
             } else if (modifiedInCurrent && deletedInBranch) {
                 String result = "<<<<<<< HEAD\n" +
                         currentContents +
@@ -531,6 +581,8 @@ public class MainHelper {
                         ">>>>>>>\n";
                 writeContents(CWDPath, result);
                 conflict = true;
+                addHelper(fileName);
+                sa = StagingArea.readStagingArea();
             }
         }
         for (String fileName: headFilesName) {
@@ -555,6 +607,8 @@ public class MainHelper {
                                 ">>>>>>>\n";
                         writeContents(CWDPath, result);
                         conflict = true;
+                        addHelper(fileName);
+                        sa = StagingArea.readStagingArea();
                     }
                 }
             }
@@ -581,6 +635,8 @@ public class MainHelper {
                                 ">>>>>>>\n";
                         writeContents(CWDPath, result);
                         conflict = true;
+                        addHelper(fileName);
+                        sa = StagingArea.readStagingArea();
                     }
                 }
             }
@@ -588,6 +644,7 @@ public class MainHelper {
         String msg = "Merged " + branchName + " into " + ct.getMaster().getMsg() + ".";
 
         Commit c = new Commit(msg);
+        c.setMergeParent(branchId);
         c.saveCommit();
         CommitTree.addCommitTree(c);
         StagingArea.clearArea();

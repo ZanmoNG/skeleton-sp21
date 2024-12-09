@@ -1,4 +1,5 @@
-# Create two branches and merge other into master.
+# Create two branches and merge other into master with a conflict caused by
+# a file changed in one and removed in the other.
 I definitions.inc
 > init
 <<<
@@ -24,13 +25,12 @@ I definitions.inc
 <<<
 > checkout other
 <<<
-+ f.txt notwug.txt
-> add f.txt
+> rm f.txt
 <<<
 + k.txt wug3.txt
 > add k.txt
 <<<
-> commit "Add k.txt and modify f.txt"
+> commit "Add k.txt and remove f.txt"
 <<<
 > checkout master
 <<<

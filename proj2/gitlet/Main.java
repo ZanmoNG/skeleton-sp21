@@ -15,11 +15,15 @@ public class Main {
         /* If a user doesn’t input any arguments,
          print the message. and exit. */
         if (args.length == 0) {
-            System.out.println("Please enter a  command.");
+            System.out.println("Please enter a command.");
             System.exit(0);
         }
 
         String firstArg = args[0];
+        if (!firstArg.equals("init") && !Repository.GITLET_DIR.exists()) {
+            System.out.println("Not in an initialized Gitlet directory.");
+            System.exit(0);
+        }
         switch(firstArg) {
             // TODO: handle wrong number of args for add, commit....
             case "init":

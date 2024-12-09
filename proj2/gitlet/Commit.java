@@ -125,9 +125,8 @@ public class Commit implements Serializable {
             return result;
         } else {
             String result = "commit " + id
-                    + "\nMerge: " + parent.substring(0,7) + " " + mergedParent.substring(0,7)
                     + "\nDate: " + getFormatTime()
-                    + "\nMerged development into master";
+                    + "\n" + message;
             return result;
         }
     }
@@ -157,5 +156,18 @@ public class Commit implements Serializable {
             System.exit(0);
         }
         return Blob.readBlob(id);
+    }
+
+    public void setMergeParent(String parentId) {
+        this.merged = true;
+        this.mergedParent = parentId;
+    }
+
+    public boolean isMerged() {
+        return merged;
+    }
+
+    public String getMergedParent() {
+        return mergedParent;
     }
 }

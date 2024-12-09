@@ -1,6 +1,7 @@
 package gitlet;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class CommitTree implements Serializable {
     public static class branch implements Serializable {
         private node p;
         private String msg;
+        private node latest = null;
 
         public branch(node theNode, String theMessage) {
             p = theNode;
@@ -51,10 +53,51 @@ public class CommitTree implements Serializable {
     /** all other branches of a commit tree */
     private LinkedList<branch> branches;
 
+    private node findNode(String id) {
+        boolean found = false;
+        LinkedList<node> ls = new LinkedList<>();
+        if (master.latest == null) {
+            master.latest = master.p;
+        }
+        ls.addLast(master.latest);
+        for (branch b: branches) {
+            if (b.latest == null) {
+                b.latest = b.p;
+            }
+            ls.addLast(b.latest);
+        }
+        node p = null;
+        while(!ls.isEmpty()) {
+            p = ls.removeFirst();
+            if (p == tailSentinel) {
+                continue;
+            } else if (!p.merged) {
+                ls.addLast(p.parent);
+            } else if (p.merged) {
+                ls.addLast(p.parent);
+                ls.addLast(p.mergedParent);
+            }
+            if (p.id.equals(id)) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("No commit with that id exists.");
+            System.exit(0);
+        } else {
+            return p;
+        }
+        return null;
+    }
 
     public CommitTree(Commit c) {
         // initialize the commitTree
         node p = new node(c.getId(), tailSentinel);
+        if (c.isMerged()) {
+            p.merged = true;
+            p.mergedParent = this.findNode(c.getMergedParent());
+        }
         master = new branch(p, "master");
         branches = new LinkedList<>();
     }
@@ -65,6 +108,10 @@ public class CommitTree implements Serializable {
     public void addMaster(Commit c) {
         // update tree
         master.p = new node(c.getId(), master.p);
+        if (c.isMerged()) {
+            master.p.merged = true;
+            master.p.mergedParent = this.findNode(c.getMergedParent());
+        }
     }
 
     /** save tree obj */
@@ -75,7 +122,8 @@ public class CommitTree implements Serializable {
     private void addNewBranch(String name) {
         for (branch b: branches) {
             if (b.msg.equals(name)) {
-                throw error("A branch with that name does not exist.");
+                System.out.println("A branch with that name does not exist.");
+                System.exit(0);
             }
         }
         branches.addLast(new branch(master.p, name));
@@ -111,7 +159,8 @@ public class CommitTree implements Serializable {
 
     private void removeBranch(String name) {
         if (master.msg.equals(name)) {
-            throw error("Cannot remove the current branch.");
+            System.out.println("Cannot remove the current branch.");
+            System.exit(0);
         }
         boolean found = false;
         for (branch b: branches) {
@@ -121,7 +170,8 @@ public class CommitTree implements Serializable {
             }
         }
         if (!found) {
-            throw error("Cannot remove the current branch.");
+            System.out.println("A branch with that name does not exist.");
+            System.exit(0);
         }
     }
 
@@ -149,7 +199,11 @@ public class CommitTree implements Serializable {
     /** this method will log out every commit in the commits folder */
     public static void displayAll() {
         for(int i = 1; i <= 256; i++) {
-            File folder = join(Repository.COMMIT_FOLDER, Integer.toHexString(i));
+            String hex2Id = Integer.toHexString(i);
+            if (hex2Id.length() == 1) {
+                hex2Id = "0" + hex2Id;
+            }
+            File folder = join(Repository.COMMIT_FOLDER, hex2Id);
             if (folder.exists()) {
                 List<String> files = plainFilenamesIn(folder);
                 for (String file : files) {
@@ -193,11 +247,14 @@ public class CommitTree implements Serializable {
     }
 
     private void changeMaster_(String branchName) {
-        branches.addLast(new branch(master.p, master.msg));
+        branch newBranch = new branch(master.p, master.msg);
+        newBranch.latest = master.latest;
+        branches.addLast(newBranch);
         for (branch b: branches) {
             if (b.msg.equals(branchName)) {
                 master = b;
                 branches.remove(b);
+                break;
             }
         }
     }
@@ -212,12 +269,21 @@ public class CommitTree implements Serializable {
     public void moveHead_(String id) {
         boolean found = false;
         LinkedList<node> ls = new LinkedList<>();
-        ls.addLast(master.p);
+        if (master.latest == null) {
+            master.latest = master.p;
+        }
+        ls.addLast(master.latest);
+        for (branch b: branches) {
+            if (b.latest == null) {
+                b.latest = b.p;
+            }
+            ls.addLast(b.latest);
+        }
         node p = null;
         while(!ls.isEmpty()) {
             p = ls.removeFirst();
             if (p == tailSentinel) {
-
+                continue;
             } else if (!p.merged) {
                 ls.addLast(p.parent);
             } else if (p.merged) {
@@ -230,9 +296,12 @@ public class CommitTree implements Serializable {
             }
         }
         if (!found) {
-            throw error("No commit with that id exists.");
+            System.out.println("No commit with that id exists.");
+            System.exit(0);
         } else {
+            node newLatest = master.latest;
             master = new branch(p, master.msg);
+            master.latest = newLatest;
         }
     }
 
@@ -243,27 +312,29 @@ public class CommitTree implements Serializable {
         ct.saveCommitTree();
     }
 
+    private void addToList(node p, LinkedList<node> ls) {
+        LinkedList<node> nodesToTravel = new LinkedList<>();
+        nodesToTravel.addLast(p);
+        while (!nodesToTravel.isEmpty()) {
+            node n = nodesToTravel.removeFirst();
+            ls.addFirst(n);
+            if (n == tailSentinel) {
+                continue;
+            } else if (!n.merged) {
+                nodesToTravel.addLast(n.parent);
+            } else {
+                nodesToTravel.addLast(n.parent);
+                nodesToTravel.addLast(n.mergedParent);
+            }
+        }
+    }
+
     private node findLatestCommonAncestor_(node n1, node n2) {
         LinkedList<node> ls1 = new LinkedList<node>();
         LinkedList<node> ls2 = new LinkedList<node>();
-        while (n1 != tailSentinel) {
-            if (!n1.merged) {
-                ls1.addFirst(n1);
-                n1 = n1.parent;
-            } else {
-                ls1.addFirst(n1);
-                n1 = findLatestCommonAncestor_(n1.parent, n1.mergedParent);
-            }
-        }
-        while (n2 != tailSentinel) {
-            if (!n2.merged) {
-                ls2.addFirst(n2);
-                n2 = n2.parent;
-            } else {
-                ls2.addFirst(n2);
-                n2 = findLatestCommonAncestor_(n2.parent, n2.mergedParent);
-            }
-        }
+        CommitTree ct = readCommitTree();
+        ct.addToList(n1, ls1);
+        ct.addToList(n2, ls2);
         ls1.retainAll(ls2);
         return ls1.getLast();
     }
@@ -302,5 +373,14 @@ public class CommitTree implements Serializable {
         System.out.println("A branch with that name does not exist.");
         System.exit(0);
         return null;
+    }
+
+    public static boolean noNeedToCheckout(String branchName) {
+        CommitTree ct = CommitTree.readCommitTree();
+        if (ct.getMaster().msg.equals(branchName)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
