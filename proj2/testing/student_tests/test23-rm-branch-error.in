@@ -16,5 +16,5 @@ Cannot remove the current branch.
 <<<
 E f.txt
 > rm-branch foo
-A branch with that name does not exist.
+A branch with that name does not exists.
 <<<

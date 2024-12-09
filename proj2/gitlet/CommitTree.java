@@ -122,7 +122,7 @@ public class CommitTree implements Serializable {
     private void addNewBranch(String name) {
         for (branch b: branches) {
             if (b.msg.equals(name)) {
-                System.out.println("A branch with that name does not exist.");
+                System.out.println("A branch with that name already exists.");
                 System.exit(0);
             }
         }

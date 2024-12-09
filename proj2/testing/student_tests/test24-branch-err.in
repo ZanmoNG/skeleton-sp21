@@ -1,0 +1,17 @@
+# Check that two branches can't be given same name.
+> init
+<<<
+I definitions.inc
+> branch other
+<<<
++ f.txt wug.txt
++ g.txt notwug.txt
+> add g.txt
+<<<
+> add f.txt
+<<<
+> commit "Main two files"
+<<<
+> branch other
+A branch with that name already exists.
+<<<
